@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lassana.com - Final Version</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    
+
+    <script>
+        // Tailwind CSS Configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'fresh-green': '#22c55e',
+                        'dark-green': '#16a34a',
+                        'earth-brown': '#92400e',
+                        'light-green': '#dcfce7',
+                        'nav-green-light': '#c8e2b7',
+                        'nav-green-dark': '#6d9f52',
+                        'hero-purple': '#e9d5ff',
+                        'hero-pink': '#ffe4e6',
+                        'hero-blue': '#e0f2fe'
+                    },
+                    // SCREENSHOT EKATA GALAPENA ASPECT RATIO
+                    aspectRatio: {
+                        '10/16': '10 / 16', // Mobile view
+                        '18/5': '18 / 5',   // Desktop view (Screenshot anuva)
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .dropdown:hover .dropdown-menu { display: block; }
+        .swiper-pagination-bullet-active { background-color: #1f2937; }
+    </style>
+</head>
+<body class="font-sans leading-relaxed text-gray-800 bg-gray-50">
+
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md py-3">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex-shrink-0"><img src="http://googleusercontent.com/file_content/0" alt="Lassana.com" class="h-8 md:h-9"></div>
+            <div class="flex-grow mx-8"><div class="relative"><input type="text" placeholder="Search for anything..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"><i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i><button class="absolute right-0 top-0 h-full px-4 bg-nav-green-dark text-white rounded-r-lg hover:bg-dark-green transition duration-300"><i class="fas fa-search"></i></button></div></div>
+            <div class="hidden md:flex items-center space-x-6 text-gray-700"><div class="text-right"><p class="font-bold text-xl text-gray-800">Happiness Hotline</p><p class="text-lg">011 2001122</p></div><a href="#" class="flex items-center hover:text-green-500 text-lg"><i class="fas fa-user-circle text-3xl mr-1"></i> Account</a><a href="#" class="relative hover:text-green-500"><i class="fas fa-shopping-cart text-3xl"></i><span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span></a></div>
+            <div class="md:hidden flex-shrink-0"><button id="mobile-menu-button" class="text-gray-600 hover:text-dark-green focus:outline-none"><i class="fas fa-bars text-2xl"></i></button></div>
+        </div>
+    </header>
+    <nav id="main-nav" class="fixed left-0 right-0 z-40 bg-nav-green-light shadow-md">
+        <div class="hidden container mx-auto px-4 py-2 md:flex justify-between items-center text-base font-semibold">
+            <div class="flex items-center gap-x-4"><div class="relative dropdown"><button class="bg-nav-green-dark text-white py-3 px-4 rounded hover:bg-opacity-90 transition duration-300 focus:outline-none flex items-center whitespace-nowrap"><i class="fas fa-th-list mr-2"></i>Categories <i class="fas fa-chevron-down ml-2 text-xs"></i></button><div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-b-md py-2 w-48 mt-1 z-50"><a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Flowers</a><a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Cakes & Bakes</a></div></div>
+                <div class="flex items-center space-x-2 text-gray-700 text-lg"><a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-nav-green-dark hover:text-white">Flowers</a><a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-nav-green-dark hover:text-white">Cakes & Bakes</a><a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-nav-green-dark hover:text-white">Supermarket</a><a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-nav-green-dark hover:text-white">Pharmacy</a><a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-nav-green-dark hover:text-white">Money Delivery</a><a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-nav-green-dark hover:text-white">Daily Deals</a></div>
+            </div>
+            <div><a href="#" class="bg-nav-green-dark text-white py-3 px-4 rounded hover:bg-opacity-90 transition duration-300 whitespace-nowrap">Order Status</a></div>
+        </div>
+    </nav>
+    <div id="mobile-menu" class="hidden md:hidden fixed z-30 w-full bg-white shadow-lg" style="top: 0px;">
+        <div class="pt-4 pb-3 px-4 space-y-2">
+            <div><button id="mobile-category-trigger" class="w-full flex justify-between items-center py-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded px-2"><span>Categories</span><i class="fas fa-chevron-down transition-transform duration-300"></i></button><div id="mobile-category-submenu" class="hidden pl-4 mt-2 space-y-2 border-l-2 border-gray-200"><a href="#" class="block py-2 text-base text-gray-600 hover:bg-gray-100 rounded">Flowers</a><a href="#" class="block py-2 text-base text-gray-600 hover:bg-gray-100 rounded">Cakes & Bakes</a></div></div>
+            <a href="#" class="block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded">Money Delivery</a><a href="#" class="block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded">Daily Deals</a><hr class="my-2"><a href="#" class="flex items-center block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded"><i class="fas fa-user-circle w-7 text-center mr-3 text-gray-500"></i><span>Account</span></a><a href="#" class="flex items-center block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded"><i class="fas fa-shopping-cart w-7 text-center mr-3 text-gray-500"></i><span>Cart</span></a><a href="#" class="flex items-center block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded"><i class="fas fa-receipt w-7 text-center mr-3 text-gray-500"></i><span>Order Status</span></a>
+        </div>
+    </div>
+    <main class="mt-4 px-4 sm:px-10">
+        <div class="swiper myHeroSwiper w-full aspect-[10/5] md:aspect-[18/5] rounded-2xl">
+            <div class="swiper-wrapper">
+                
+                <div class="swiper-slide bg-hero-purple" data-background="https://i.imgur.com/Bkx9z2R.png">
+                    <div class="p-6 md:p-12 flex flex-col md:flex-row items-center overflow-hidden h-full">
+                        <div class="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+                            <p class="text-xl text-gray-700 font-serif italic">"It's not only Flowers, Cakes, and Grocery"</p>
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 my-3">GIFT MONEY</h1>
+                            <h2 class="text-xl sm:text-2xl lg:text-3xl text-gray-800">To Your Loved Ones in Sri Lanka</h2>
+                            <div class="my-8"><a href="#" class="inline-block border-2 border-gray-800 rounded-full px-10 py-3 font-bold text-gray-800 hover:bg-gray-800 hover:text-white transition duration-300">READ MORE</a></div>
+                            <p class="text-lg text-gray-700">Call Jajiana on <span class="font-semibold">+94 77 910 5219</span></p>
+                            <p class="text-xs text-gray-500 mt-12">*Central Bank of Sri Lanka approved Transaction Service.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide bg-hero-pink" data-background="https://i.imgur.com/vJqkZ4A.png">
+                    <div class="p-6 md:p-12 flex flex-col md:flex-row items-center overflow-hidden h-full">
+                        <div class="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 my-3">BLOOMING BEAUTY</h1>
+                            <h2 class="text-xl sm:text-2xl lg:text-3xl text-gray-800">Delicate blooms for cherished moments</h2>
+                            <div class="my-8"><a href="#" class="inline-block border-2 border-gray-800 rounded-full px-10 py-3 font-bold text-gray-800 hover:bg-gray-800 hover:text-white transition duration-300">ORDER NOW</a></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide bg-hero-blue" data-background="https://i.imgur.com/abCdeFg.png">
+                    <div class="p-6 md:p-12 flex flex-col md:flex-row items-center overflow-hidden h-full">
+                        <div class="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 my-3">DELICIOUSLY YOURS</h1>
+                            <h2 class="text-xl sm:text-2xl lg:text-3xl text-gray-800">Freshly baked cakes for every celebration</h2>
+                            <div class="my-8"><a href="#" class="inline-block border-2 border-gray-800 rounded-full px-10 py-3 font-bold text-gray-800 hover:bg-gray-800 hover:text-white transition duration-300">BROWSE CAKES</a></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <section class="mt-5">
+            <div class="swiper category-slider">
+                <div class="swiper-wrapper pb-8">
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/3Y5j3p2.png" alt="Cakes and Bakes" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Cakes and Bakes</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/lKk9sZd.png" alt="Supermarket" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Supermarket</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/rD9Z7Y1.png" alt="Pharmacy" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Pharmacy</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/xO4bVjA.png" alt="Fruit & Veggie Baskets" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Fruit & Veggie</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/J8e2tZ4.png" alt="Chocolates & Cookies" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Chocolates</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/8mRQE2a.png" alt="Hampers" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Hampers</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/sC5IqmR.png" alt="Gifts" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Gifts</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/zN2yBcw.png" alt="Toys" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Toys</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/T0w2YfJ.png" alt="Perfumes" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Perfumes</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/p5A2k9h.png" alt="Electronics" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Electronics</p></a></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-2">
+            <div class="swiper ad-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden group aspect-[6/3]">
+                            <a href="#" class="block h-full">
+                                <img src="https://i.imgur.com/GjH3aL5.png" alt="Gift Money Advertisement" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden group aspect-[6/3]">
+                            <a href="#" class="block h-full">
+                                <img src="https://i.imgur.com/bWzaIDW.png" alt="Free Delivery Advertisement" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden group aspect-[6/3]">
+                            <a href="#" class="block h-full">
+                                <img src="https://i.imgur.com/Yg5oO8K.jpeg" alt="Nutritional Supplements Advertisement" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+        </main>
+       
+        
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="js/navbar.js"></script>
+   
+</body>
+</html>
