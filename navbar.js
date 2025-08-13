@@ -102,4 +102,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
-        
+        document.addEventListener('DOMContentLoaded', function () {
+    // --- Mobile Menu එක විවෘත කරන සහ වහන කොටස ---
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuTrigger = document.getElementById('mobile-menu-trigger');
+
+    // mobile-menu-trigger කියන ID එක තියෙන බොත්තම click කලාම menu එක පෙන්නන්න/හංගන්න
+    if (mobileMenuTrigger) {
+        mobileMenuTrigger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
+    // --- Mobile Menu එකේ තියෙන Category උප මෙනුව (Submenu) සඳහා ---
+    const categoryTrigger = document.getElementById('mobile-category-trigger');
+    const categorySubmenu = document.getElementById('mobile-category-submenu');
+    const categoryIcon = categoryTrigger.querySelector('i.fa-chevron-down');
+
+    // Category කියන එක click කලාම උප මෙනුව පෙන්නන/හංගන එක
+    if(categoryTrigger) {
+        categoryTrigger.addEventListener('click', function() {
+            categorySubmenu.classList.toggle('hidden');
+            // ඊතලය උඩට/පහළට හරවන එක
+            if(categoryIcon) {
+                categoryIcon.classList.toggle('rotate-180');
+            }
+        });
+    }
+});
