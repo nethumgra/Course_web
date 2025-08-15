@@ -74,138 +74,108 @@
 <body class="font-sans leading-relaxed text-gray-800 bg-gray-50">
 
   <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md py-3">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-        <div class="flex-shrink-0">
-            <a href="#"><img src="http://googleusercontent.com/file_content/0" alt="Find ur Course" class="h-8 md:h-9"></a>
-        </div>
+  <div class="container mx-auto px-4 flex justify-between items-center">
+   <div class="flex-shrink-0">
+    <a href="#"><img src="logo.png" alt="Find ur Course" class="h-10 md:h-12"></a>
+   </div>
 
-        <div class="flex-grow mx-8 hidden md:block"> 
-            <div class="relative">
-                <input type="text" placeholder="Search for courses, skills, or topics..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fresh-green">
-                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                <button class="absolute right-0 top-0 h-full px-4 bg-fresh-green text-white rounded-r-lg hover:bg-dark-green transition duration-300">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-
-        <div class="hidden md:flex items-center space-x-6 text-gray-700">
-            <a href="#" class="flex items-center hover:text-fresh-green text-lg transition-colors"><i class="fas fa-user-circle text-3xl mr-1"></i> My Account</a>
-            <a href="#" class="relative hover:text-fresh-green transition-colors"><i class="fas fa-shopping-cart text-3xl"></i>
-                <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
-            </a>
-        </div>
-        
-        <div class="md:hidden">
-            <button id="mobile-menu-trigger" class="text-gray-700 hover:text-fresh-green focus:outline-none">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
-        </div>
+   <div class="flex-grow mx-8 hidden md:block">
+    <div class="relative">
+        <input type="text" placeholder="Search for courses, skills, or topics..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+        <button class="absolute right-0 top-0 h-full px-4 bg-red-500 text-white rounded-r-lg hover:bg-black transition duration-300">
+            <i class="fas fa-search"></i>
+        </button>
     </div>
-</header>
+</div>
 
-<nav id="main-nav" class="fixed left-0 right-0 z-40 bg-light-green shadow-md"> <div class="hidden container mx-auto px-4 py-2 md:flex justify-between items-center text-base font-semibold">
-        <div class="flex items-center gap-x-4">
-            <div class="relative dropdown">
-                <button class="bg-fresh-green text-white py-3 px-4 rounded hover:bg-dark-green transition duration-300 focus:outline-none flex items-center whitespace-nowrap">
-                    <i class="fas fa-th-list mr-2"></i>Categories <i class="fas fa-chevron-down ml-2 text-xs"></i>
-                </button>
-                <div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-b-md py-2 w-48 mt-1 z-50 border-t-2 border-fresh-green">
-                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-light-green">Programming</a>
-                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-light-green">Design</a>
-                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-light-green">Business</a>
-                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-light-green">Marketing</a>
-                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-light-green">Language</a>
-                </div>
-            </div>
-            <div class="flex items-center space-x-2 text-gray-700 text-lg">
-                <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-dark-green hover:text-white">Programming</a>
-                <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-dark-green hover:text-white">Design</a>
-                <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-dark-green hover:text-white">Business</a>
-                <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-dark-green hover:text-white">Marketing</a>
-                <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-dark-green hover:text-white">Language</a>
-                <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-dark-green hover:text-white">All Courses</a>
-            </div>
-        </div>
-        <div>
-            <a href="#" class="bg-dark-green text-white py-3 px-4 rounded hover:bg-fresh-green transition duration-300 whitespace-nowrap">My Learning</a>
-        </div>
+   <div class="hidden md:flex items-center space-x-6 text-gray-700">
+    <a href="#" class="flex items-center hover:text-fresh-green text-lg transition-colors"><i class="fas fa-user-circle text-3xl mr-1"></i> My Account</a>
+    <a href="#" class="relative hover:text-fresh-green transition-colors"><i class="fas fa-shopping-cart text-3xl"></i>
+     <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+    </a>
+   </div>
+
+   <div class="md:hidden">
+    <button id="mobile-menu-trigger" class="text-gray-700 hover:text-fresh-green focus:outline-none">
+     <i class="fas fa-bars text-2xl"></i>
+    </button>
+   </div>
+  </div>
+ </header>
+<nav id="main-nav" class="fixed left-0 right-0 z-40 bg-white shadow-md">
+ <div class="hidden container mx-auto px-4 py-2 md:flex justify-between items-center text-base font-semibold">
+  <div class="flex items-center gap-x-4">
+   <div class="relative dropdown">
+    <button class="bg-black text-white py-3 px-4 rounded hover:bg-red-500 transition duration-300 focus:outline-none flex items-center whitespace-nowrap">
+     <i class="fas fa-th-list mr-2"></i>Categories <i class="fas fa-chevron-down ml-2 text-xs"></i>
+    </button>
+    <div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-b-md py-2 w-48 mt-1 z-50 border-t-2 border-red-500">
+     <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Programming</a>
+     <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Design</a>
+     <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Business</a>
+     <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Marketing</a>
+     <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Language</a>
     </div>
+   </div>
+   <div class="flex items-center space-x-2 text-gray-700 text-lg">
+    <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Programming</a>
+    <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Design</a>
+    <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Business</a>
+    <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Marketing</a>
+    <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Language</a>
+    <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">All Courses</a>
+   </div>
+  </div>
+  <div>
+   <a href="#" class="bg-red-500 text-white py-3 px-4 rounded hover:bg-black transition duration-300 whitespace-nowrap">My Learning</a>
+  </div>
+ </div>
 </nav>
 
 <div id="mobile-menu" class="hidden md:hidden fixed z-30 w-full bg-white shadow-lg">
-    <div class="pt-4 pb-3 px-4 space-y-2">
-        <div>
-            <button id="mobile-category-trigger" class="w-full flex justify-between items-center py-2 text-lg font-semibold text-gray-700 hover:bg-light-green rounded px-2">
-                <span>Categories</span>
-                <i class="fas fa-chevron-down transition-transform duration-300"></i>
-            </button>
-            <div id="mobile-category-submenu" class="hidden pl-4 mt-2 space-y-2 border-l-2 border-fresh-green">
-                <a href="#" class="block py-2 text-base text-gray-600 hover:bg-light-green rounded">Programming</a>
-                <a href="#" class="block py-2 text-base text-gray-600 hover:bg-light-green rounded">Design</a>
-                <a href="#" class="block py-2 text-base text-gray-600 hover:bg-light-green rounded">Business</a>
-                <a href="#" class="block py-2 text-base text-gray-600 hover:bg-light-green rounded">Marketing</a>
-                <a href="#" class="block py-2 text-base text-gray-600 hover:bg-light-green rounded">Language</a>
-            </div>
-        </div>
-        <a href="#" class="block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-light-green rounded">All Courses</a>
-        <a href="#" class="block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-light-green rounded">My Learning</a>
-        <hr class="my-2">
-        <a href="#" class="flex items-center block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-light-green rounded">
-            <i class="fas fa-user-circle w-7 text-center mr-3 text-gray-500"></i>
-            <span>Account</span>
-        </a>
-        <a href="#" class="flex items-center block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-light-green rounded">
-            <i class="fas fa-shopping-cart w-7 text-center mr-3 text-gray-500"></i>
-            <span>Cart</span>
-        </a>
-    </div>
+ <div class="pt-4 pb-3 px-4 space-y-2">
+  <div>
+   <button id="mobile-category-trigger" class="w-full flex justify-between items-center py-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded px-2">
+    <span>Categories</span>
+    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+   </button>
+   <div id="mobile-category-submenu" class="hidden pl-4 mt-2 space-y-2 border-l-2 border-red-500">
+    <a href="#" class="block py-2 text-base text-gray-600 hover:bg-gray-100 rounded">Programming</a>
+    <a href="#" class="block py-2 text-base text-gray-600 hover:bg-gray-100 rounded">Design</a>
+    <a href="#" class="block py-2 text-base text-gray-600 hover:bg-gray-100 rounded">Business</a>
+    <a href="#" class="block py-2 text-base text-gray-600 hover:bg-gray-100 rounded">Marketing</a>
+    <a href="#" class="block py-2 text-base text-gray-600 hover:bg-gray-100 rounded">Language</a>
+   </div>
+  </div>
+  <a href="#" class="block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded">All Courses</a>
+  <a href="#" class="block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded">My Learning</a>
+  <hr class="my-2">
+  <a href="#" class="flex items-center block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded">
+   <i class="fas fa-user-circle w-7 text-center mr-3 text-gray-500"></i>
+   <span>Account</span>
+  </a>
+  <a href="#" class="flex items-center block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded">
+   <i class="fas fa-shopping-cart w-7 text-center mr-3 text-gray-500"></i>
+   <span>Cart</span>
+  </a>
+ </div>
 </div>
 
     <main class="mt-4 px-4 sm:px-10">
         <div class="swiper myHeroSwiper w-full aspect-[10/5] md:aspect-[18/5] rounded-2xl">
             <div class="swiper-wrapper">
 
-              <div class="swiper-slide bg-hero-purple" data-background="https://i.imgur.com/Bkx9z2R.png">
-                    <div class="p-6 md:p-12 flex flex-col md:flex-row items-center overflow-hidden h-full">
-                        <div class="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0">
-                            <p class="text-xl text-gray-700 font-serif italic">"Unlock your potential with top-rated courses"</p>
-                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 my-3">LEARN ANYTIME</h1>
-                            <h2 class="text-xl sm:text-2xl lg:text-3xl text-gray-800">Online Courses for Every Ambition</h2>
-                            <div class="my-8">
-                                <a href="#" class="inline-block border-2 border-gray-800 rounded-full px-10 py-3 font-bold text-gray-800 hover:bg-gray-800 hover:text-white transition duration-300">EXPLORE COURSES</a>
-                            </div>
-                            <p class="text-lg text-gray-700">Need help? <span class="font-semibold">+94 77 910 5219</span></p>
-                            <p class="text-xs text-gray-500 mt-12">*Certified by leading institutions.</p>
-                        </div>
-                    </div>
-                </div>
+    <div class="swiper-slide bg-hero-purple" data-background="3.png">
+    </div>
 
 
-                <div class="swiper-slide bg-hero-pink" data-background="https://i.imgur.com/vJqkZ4A.png">
-                    <div class="p-6 md:p-12 flex flex-col md:flex-row items-center overflow-hidden h-full">
-                        <div class="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0">
-                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 my-3">SKILL UP TODAY</h1>
-                            <h2 class="text-xl sm:text-2xl lg:text-3xl text-gray-800">Top courses for your career growth</h2>
-                            <div class="my-8">
-                                <a href="#" class="inline-block border-2 border-gray-800 rounded-full px-10 py-3 font-bold text-gray-800 hover:bg-gray-800 hover:text-white transition duration-300">ENROLL NOW</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-               
-                <div class="swiper-slide bg-hero-blue" data-background="https://i.imgur.com/abCdeFg.png">
-                    <div class="p-6 md:p-12 flex flex-col md:flex-row items-center overflow-hidden h-full">
-                        <div class="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0">
-                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 my-3">LEARN & GROW</h1>
-                            <h2 class="text-xl sm:text-2xl lg:text-3xl text-gray-800">Expert-led classes for every ambition</h2>
-                            <div class="my-8">
-                                <a href="#" class="inline-block border-2 border-gray-800 rounded-full px-10 py-3 font-bold text-gray-800 hover:bg-gray-800 hover:text-white transition duration-300">BROWSE COURSES</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="swiper-slide bg-hero-pink" data-background="2.png">
+    </div>
+
+
+<div class="swiper-slide bg-hero-blue" data-background="1.png">
+    </div>
 
             </div>
             <div class="swiper-pagination"></div>
@@ -214,17 +184,17 @@
         <section class="mt-5">
             <div class="swiper category-slider">
                 <div class="swiper-wrapper pb-8">
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/3Y5j3p2.png" alt="Programming" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Programming</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/lKk9sZd.png" alt="Design" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Design</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/rD9Z7Y1.png" alt="Business" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Business</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/xO4bVjA.png" alt="Marketing" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Marketing</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/J8e2tZ4.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/J8e2tZ4.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/J8e2tZ4.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/J8e2tZ4.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/J8e2tZ4.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/J8e2tZ4.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.imgur.com/J8e2tZ4.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (1).png" alt="Programming" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Programming</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (2).png" alt="Design" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Design</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (3).png" alt="Business" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Business</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (4).png" alt="Marketing" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Marketing</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (5).png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (6).png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (7).png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (8).png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (9).png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
+                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (10).png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
+                    
                 </div>
             </div>
         </section>
@@ -235,21 +205,21 @@
                     <div class="swiper-slide">
                         <div class="bg-white rounded-lg shadow-md overflow-hidden group aspect-[6/3]">
                             <a href="#" class="block h-full">
-                                <img src="https://i.imgur.com/GjH3aL5.png" alt="Online Learning Advertisement" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity">
+                                <img src="b1.jpg" alt="Online Learning Advertisement" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity">
                             </a>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="bg-white rounded-lg shadow-md overflow-hidden group aspect-[6/3]">
                             <a href="#" class="block h-full">
-                                <img src="https://i.imgur.com/bWzaIDW.png" alt="Skill Up Advertisement" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity">
+                                <img src="b2.jpg" alt="Skill Up Advertisement" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity">
                             </a>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="bg-white rounded-lg shadow-md overflow-hidden group aspect-[6/3]">
                             <a href="#" class="block h-full">
-                                <img src="https://i.imgur.com/Yg5oO8K.jpeg" alt="Certificate Courses Advertisement" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity">
+                                <img src="b3.jpg" alt="Certificate Courses Advertisement" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity">
                             </a>
                         </div>
                     </div>
@@ -265,7 +235,7 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="navbar.js"></script>
 
-<section id="about" class="py-16 md:py-24 bg-gray-50">
+<section id="about" class="py-16 md:py-24 bg-white">
     <div class="container mx-auto px-4 max-w-screen-3xl">
 
         <div class="text-center mb-12">
@@ -279,9 +249,9 @@
 
         <div class="bg-white rounded-xl shadow-lg overflow-hidden">
             <div class="grid md:grid-cols-2 items-center">
-                
+
                 <div class="h-full">
-                    <img src="https://i.imgur.com/eysn4zT.png" alt="A team collaborating on a project" class="w-full h-full object-cover">
+                    <img src="img/b2.jpg" alt="A team collaborating on a project" class="w-full h-full object-cover">
                 </div>
 
                 <div class="p-8 md:p-12">
@@ -295,7 +265,7 @@
                     <ul class="space-y-4 mb-8">
                         <li class="flex items-start">
                             <div class="flex-shrink-0">
-                                <i class="fas fa-chalkboard-teacher text-xl text-fresh-green bg-light-green p-3 rounded-full"></i>
+                                <i class="fas fa-chalkboard-teacher text-xl text-red-500 bg-red-100 p-3 rounded-full"></i>
                             </div>
                             <div class="ml-4">
                                 <h4 class="font-bold text-gray-700">Expert-Led Courses</h4>
@@ -304,16 +274,16 @@
                         </li>
                         <li class="flex items-start">
                             <div class="flex-shrink-0">
-                                <i class="fas fa-clock text-xl text-fresh-green bg-light-green p-3 rounded-full"></i>
+                                <i class="fas fa-clock text-xl text-red-500 bg-red-100 p-3 rounded-full"></i>
                             </div>
                             <div class="ml-4">
                                 <h4 class="font-bold text-gray-700">Flexible Learning</h4>
                                 <p class="text-gray-500">Learn at your own pace, anytime, anywhere, with lifetime access.</p>
                             </div>
                         </li>
-                         <li class="flex items-start">
+                        <li class="flex items-start">
                             <div class="flex-shrink-0">
-                                <i class="fas fa-users text-xl text-fresh-green bg-light-green p-3 rounded-full"></i>
+                                <i class="fas fa-users text-xl text-red-500 bg-red-100 p-3 rounded-full"></i>
                             </div>
                             <div class="ml-4">
                                 <h4 class="font-bold text-gray-700">Supportive Community</h4>
@@ -322,7 +292,7 @@
                         </li>
                     </ul>
 
-                    <a href="#products" class="inline-block bg-fresh-green text-white font-bold py-3 px-8 rounded-full transition-transform duration-300 hover:scale-105 hover:bg-dark-green shadow-lg">
+                    <a href="#products" class="inline-block bg-black text-white font-bold py-3 px-8 rounded-full transition-transform duration-300 hover:scale-105 hover:bg-red-500 shadow-lg">
                         Explore Our Courses
                     </a>
                 </div>
@@ -332,8 +302,7 @@
 </section>
 
 
-
-    <section id="products" class="pt-0 pb-16 md:pt-0 md:pb-20 bg-gray-50">
+    <section id="products" class="pt-0 pb-16 md:pt-0 md:pb-20 bg-white">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Our Popular Courses</h2>
@@ -342,8 +311,6 @@
 
         <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             </div>
-
-       
     </div>
 </section>
     
@@ -436,7 +403,7 @@ document.addEventListener('DOMContentLoaded', function () {
             What Our Students Say
         </h2>
         <p class="text-center text-gray-600 mb-6 md:mb-12">
-            Honest feedback from our learning community.
+            Genuine experiences and honest feedback shared by our vibrant learning community, reflecting the real impact of our courses and support.
         </p>
         
         <div class="swiper testimonials-swiper">
@@ -493,6 +460,45 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
 </section>
 
+<section id="partners" class="py-16 md:py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        
+        <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-black to-black bg-clip-text text-transparent pb-2">
+                Our Partners 
+            </h2>
+            <p class="text-lg text-gray-600 mt-2">Proudly partnered with and trusted by some of the world’s most respected, innovative, and industry-leading companies across diverse sectors.</p>
+        </div>
+
+        <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20">
+            <div>
+                <a href="#" target="_blank">
+                    <img src="tharindu production logos-01.png" 
+                         alt="Partner Logo 1" 
+                         class="h-40 md:h-40 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                </a>
+            </div>
+            
+            <div>
+                <a href="#" target="_blank">
+                     <img src="tharindu g¾phic logos-01.png" 
+                          alt="Partner Logo 2" 
+                          class="h-40 md:h-40 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                </a>
+            </div>
+
+             <div>
+                <a href="#" target="_blank">
+                     <img src="tharindu g¾phic logos-01.png" 
+                          alt="Partner Logo 2" 
+                          class="h-40 md:h-40 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
 
 <script>
     // This script will find your manual reviews and turn them into a slider.
@@ -533,12 +539,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 </script>
-
-<section id="contact" class="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-white to-light-green/20 overflow-hidden">
+<section id="contact" class="py-16 md:py-24 bg-gray-50 overflow-hidden">
     <div class="container mx-auto px-4 max-w-screen-xl">
 
         <div class="text-center mb-12 md:mb-16 scroll-animate">
-            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-black to-black  bg-clip-text text-transparent pb-2">
+            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-black to-black bg-clip-text text-transparent pb-2">
                 Get in Touch
             </h2>
             <p class="text-lg text-gray-600 mt-2 max-w-2xl mx-auto">
@@ -549,26 +554,20 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="grid md:grid-cols-2 gap-12 items-start">
             
             <div class="space-y-6">
-                <div class="w-full h-80 rounded-xl shadow-lg overflow-hidden border border-gray-200/80 scroll-animate" style="transition-delay: 100ms;">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.999699667823!2d79.8516592758151!3d6.891349993108638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259663f736599%3A0x9330225d880429b6!2sLiberty%20Plaza!5e0!3m2!1sen!2slk!4v1723145853165!5m2!1sen!2slk" 
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
                 
-                <div class="animate-bob flex items-start p-6 bg-white rounded-xl shadow-sm border border-gray-200/80 hover:shadow-lg hover:border-fresh-green/50 hover:-translate-y-1 transition-all duration-300 scroll-animate" style="transition-delay: 200ms;">
-                    <i class="fas fa-phone-alt text-3xl text-fresh-green flex-shrink-0"></i>
+                <div class="animate-bob flex items-start p-6 bg-white rounded-xl shadow-sm border border-gray-200/80 hover:shadow-lg hover:border-red-500/50 hover:-translate-y-1 transition-all duration-300 scroll-animate" style="transition-delay: 200ms;">
+                    <i class="fas fa-phone-alt text-3xl text-red-500 flex-shrink-0"></i>
                     <div class="ml-5">
                         <h4 class="font-bold text-gray-800 text-xl mb-1">Phone</h4>
-                        <p class="text-gray-600 hover:text-dark-green transition-colors"><a href="tel:+94779105219">+94 77 910 5219</a> (Support)</p>
+                        <p class="text-gray-600 hover:text-red-500 transition-colors"><a href="tel:+94779105219">+94 77 910 5219</a> (Support)</p>
                     </div>
                 </div>
                 
-                <div class="animate-bob flex items-start p-6 bg-white rounded-xl shadow-sm border border-gray-200/80 hover:shadow-lg hover:border-fresh-green/50 hover:-translate-y-1 transition-all duration-300 scroll-animate" style="transition-delay: 300ms; animation-delay: -1.5s;">
-                    <i class="fas fa-envelope text-3xl text-fresh-green flex-shrink-0"></i>
+                <div class="animate-bob flex items-start p-6 bg-white rounded-xl shadow-sm border border-gray-200/80 hover:shadow-lg hover:border-red-500/50 hover:-translate-y-1 transition-all duration-300 scroll-animate" style="transition-delay: 300ms; animation-delay: -1.5s;">
+                    <i class="fas fa-envelope text-3xl text-red-500 flex-shrink-0"></i>
                     <div class="ml-5">
                         <h4 class="font-bold text-gray-800 text-xl mb-1">Email</h4>
-                        <p class="text-gray-600 hover:text-dark-green transition-colors"><a href="mailto:info@findurcourse.lk">info@findurcourse.lk</a></p>
+                        <p class="text-gray-600 hover:text-red-500 transition-colors"><a href="mailto:info@findurcourse.lk">info@findurcourse.lk</a></p>
                     </div>
                 </div>
             </div>
@@ -577,22 +576,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 <form id="contact-form" action="#" method="POST" class="space-y-6">
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
-                        <input type="text" name="name" id="name" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-fresh-green focus:border-transparent transition duration-300" placeholder="e.g., John Doe">
+                        <input type="text" name="name" id="name" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-300" placeholder="e.g., John Doe">
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Your Email Address</label>
-                        <input type="email" name="email" id="email" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-fresh-green focus:border-transparent transition duration-300" placeholder="e.g., john@example.com">
+                        <input type="email" name="email" id="email" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-300" placeholder="e.g., john@example.com">
                     </div>
                     <div>
                         <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                        <input type="text" name="subject" id="subject" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-fresh-green focus:border-transparent transition duration-300" placeholder="What is your inquiry about?">
+                        <input type="text" name="subject" id="subject" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-300" placeholder="What is your inquiry about?">
                     </div>
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                        <textarea name="message" id="message" rows="5" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-fresh-green focus:border-transparent transition duration-300" placeholder="Type your message here..."></textarea>
+                        <textarea name="message" id="message" rows="5" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-300" placeholder="Type your message here..."></textarea>
                     </div>
                     <div>
-                        <button type="submit" class="w-full flex items-center justify-center bg-fresh-green text-white font-bold py-4 px-8 rounded-full transition-all duration-300 hover:bg-dark-green hover:shadow-lg hover:shadow-fresh-green/30 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dark-green">
+                        <button type="submit" class="w-full flex items-center justify-center bg-black text-white font-bold py-4 px-8 rounded-full transition-all duration-300 hover:bg-red-500 hover:shadow-lg hover:shadow-red-500/30 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                             <i class="fas fa-paper-plane mr-3"></i>
                             Send Message
                         </button>
@@ -603,6 +602,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </div>
 </section>
+
 
 <!-- SCRIPT FOR SCROLL-TRIGGERED ANIMATIONS -->
 <script>
@@ -683,37 +683,37 @@ ${message}
     });
 </script>
 
-<footer class="relative bg-gray-800 overflow-hidden text-gray-300">
-    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-fresh-green to-dark-green"></div>
-    
-    <div class="absolute top-10 right-10 w-32 h-32 bg-fresh-green/10 rounded-full blur-3xl animate-float"></div>
-    <div class="absolute bottom-10 left-10 w-24 h-24 bg-dark-green/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
-    
+<footer class="relative bg-black overflow-hidden text-gray-300">
+    <div class="absolute top-0 left-0 w-full h-1 bg-red-500"></div>
+
+    <div class="absolute top-10 right-10 w-32 h-32 bg-red-500/10 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-10 left-10 w-24 h-24 bg-red-500/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+
     <div class="container mx-auto px-6 pt-20 pb-8 relative z-10">
         <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 mb-16">
-            
+
             <div class="lg:col-span-2 xl:col-span-2 space-y-6 group">
                 <div class="transform transition-all duration-500 group-hover:-translate-y-2">
-                    <h3 class="text-3xl font-bold mb-4 bg-gradient-to-r from-light-green to-fresh-green bg-clip-text text-transparent">
+                    <h3 class="text-3xl font-bold mb-4 text-white">
                         Find ur Course
                     </h3>
-                    <div class="w-16 h-1 bg-gradient-to-r from-fresh-green to-dark-green rounded-full mb-6 group-hover:w-24 transition-all duration-300"></div>
+                    <div class="w-16 h-1 bg-red-500 rounded-full mb-6 group-hover:w-24 transition-all duration-300"></div>
                     <p class="text-gray-300 text-lg leading-relaxed mb-8">
                         Empowering your learning journey with high-quality, flexible, and affordable online courses. Transform your future with expert-led education.
                     </p>
                 </div>
-                
+
                 <div class="flex flex-wrap gap-4">
-                    <a href="#" class="w-12 h-12 bg-gradient-to-br from-fresh-green to-dark-green rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-fresh-green/20">
+                    <a href="#" class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
                         <i class="fab fa-facebook-f text-lg"></i>
                     </a>
-                    <a href="#" class="w-12 h-12 bg-gradient-to-br from-fresh-green to-dark-green rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-fresh-green/20">
+                    <a href="#" class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
                         <i class="fab fa-twitter text-lg"></i>
                     </a>
-                    <a href="#" class="w-12 h-12 bg-gradient-to-br from-fresh-green to-dark-green rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-fresh-green/20">
+                    <a href="#" class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
                         <i class="fab fa-instagram text-lg"></i>
                     </a>
-                    <a href="#" class="w-12 h-12 bg-gradient-to-br from-fresh-green to-dark-green rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-fresh-green/20">
+                    <a href="#" class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
                         <i class="fab fa-linkedin-in text-lg"></i>
                     </a>
                 </div>
@@ -722,47 +722,47 @@ ${message}
             <div class="transform transition-all duration-500 hover:-translate-y-2">
                 <h4 class="text-white font-semibold text-xl mb-6 relative pb-3">
                     Quick Links
-                    <div class="absolute bottom-0 left-0 w-8 h-0.5 bg-gradient-to-r from-fresh-green to-dark-green rounded-full"></div>
+                    <div class="absolute bottom-0 left-0 w-8 h-0.5 bg-red-500 rounded-full"></div>
                 </h4>
                 <ul class="space-y-3">
-                    <li><a href="#" class="text-gray-300 hover:text-fresh-green transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-fresh-green"></i>About Us</a></li>
-                    <li><a href="#products" class="text-gray-300 hover:text-fresh-green transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-fresh-green"></i>All Courses</a></li>
-                    <li><a href="#testimonials" class="text-gray-300 hover:text-fresh-green transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-fresh-green"></i>Testimonials</a></li>
-                    <li><a href="#contact" class="text-gray-300 hover:text-fresh-green transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-fresh-green"></i>Contact Us</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>About Us</a></li>
+                    <li><a href="#products" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>All Courses</a></li>
+                    <li><a href="#testimonials" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>Testimonials</a></li>
+                    <li><a href="#contact" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>Contact Us</a></li>
                 </ul>
             </div>
 
             <div class="transform transition-all duration-500 hover:-translate-y-2">
                 <h4 class="text-white font-semibold text-xl mb-6 relative pb-3">
                     Categories
-                    <div class="absolute bottom-0 left-0 w-8 h-0.5 bg-gradient-to-r from-fresh-green to-dark-green rounded-full"></div>
+                    <div class="absolute bottom-0 left-0 w-8 h-0.5 bg-red-500 rounded-full"></div>
                 </h4>
                 <ul class="space-y-3">
-                    <li><a href="#" class="text-gray-300 hover:text-fresh-green transition-colors duration-300">Programming</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-fresh-green transition-colors duration-300">Design</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-fresh-green transition-colors duration-300">Business</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-fresh-green transition-colors duration-300">Marketing</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-fresh-green transition-colors duration-300">Language</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-red-500 transition-colors duration-300">Programming</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-red-500 transition-colors duration-300">Design</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-red-500 transition-colors duration-300">Business</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-red-500 transition-colors duration-300">Marketing</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-red-500 transition-colors duration-300">Language</a></li>
                 </ul>
             </div>
             
             <div class="transform transition-all duration-500 hover:-translate-y-2">
                 <h4 class="text-white font-semibold text-xl mb-6 relative pb-3">
                     Get in Touch
-                    <div class="absolute bottom-0 left-0 w-8 h-0.5 bg-gradient-to-r from-fresh-green to-dark-green rounded-full"></div>
+                    <div class="absolute bottom-0 left-0 w-8 h-0.5 bg-red-500 rounded-full"></div>
                 </h4>
                 <div class="space-y-4">
                      <div class="flex items-start">
-                        <i class="fas fa-map-marker-alt text-fresh-green w-5 mt-1 mr-4 flex-shrink-0"></i>
+                        <i class="fas fa-map-marker-alt text-red-500 w-5 mt-1 mr-4 flex-shrink-0"></i>
                         <span class="text-gray-400">No. 123, Galle Road, Colombo 03, Sri Lanka</span>
                     </div>
                     <div class="flex items-start">
-                        <i class="fas fa-phone-alt text-fresh-green w-5 mt-1 mr-4 flex-shrink-0"></i>
-                        <a href="tel:+94779004063" class="text-gray-400 hover:text-fresh-green transition-colors duration-300">+94 77 900 4063</a>
+                        <i class="fas fa-phone-alt text-red-500 w-5 mt-1 mr-4 flex-shrink-0"></i>
+                        <a href="tel:+94779004063" class="text-gray-400 hover:text-red-500 transition-colors duration-300">+94 77 900 4063</a>
                     </div>
                     <div class="flex items-start">
-                        <i class="fas fa-envelope text-fresh-green w-5 mt-1 mr-4 flex-shrink-0"></i>
-                        <a href="mailto:info@findurcourse.lk" class="text-gray-400 hover:text-fresh-green transition-colors duration-300 break-all">info@findurcourse.lk</a>
+                        <i class="fas fa-envelope text-red-500 w-5 mt-1 mr-4 flex-shrink-0"></i>
+                        <a href="mailto:info@findurcourse.lk" class="text-gray-400 hover:text-red-500 transition-colors duration-300 break-all">info@findurcourse.lk</a>
                     </div>
                 </div>
             </div>
@@ -771,7 +771,7 @@ ${message}
 
         <div class="border-t border-gray-700/50 pt-12 pb-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
-                <h3 class="text-3xl font-bold text-white mb-4 bg-gradient-to-r from-light-green to-fresh-green bg-clip-text text-transparent">
+                <h3 class="text-3xl font-bold text-white mb-4">
                     Stay Updated
                 </h3>
                 <p class="text-gray-300 text-lg mb-8">
@@ -781,11 +781,11 @@ ${message}
                     <input 
                         type="email" 
                         placeholder="Enter your email address" 
-                        class="flex-1 px-6 py-4 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-fresh-green focus:border-transparent transition-all duration-300"
+                        class="flex-1 px-6 py-4 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300"
                         id="newsletter-email"
                     >
                     <button 
-                        class="px-8 py-4 bg-gradient-to-r from-fresh-green to-dark-green rounded-full text-white font-semibold hover:shadow-xl hover:shadow-fresh-green/20 transform hover:scale-105 transition-all duration-300"
+                        class="px-8 py-4 bg-red-500 rounded-full text-white font-semibold hover:shadow-xl hover:shadow-red-500/20 transform hover:scale-105 transition-all duration-300"
                         id="newsletter-btn"
                     >
                         <i class="fas fa-paper-plane mr-2"></i>Subscribe
@@ -797,11 +797,11 @@ ${message}
         <div class="border-t border-gray-700/50 pt-8">
             <div class="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0">
                 <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
-                    <p class="text-gray-400">&copy; 2025 Find ur Course. All Rights Reserved.</p>
+                    <p class="text-gray-400">&copy; 2025 Wault Dot Design Academy. All Rights Reserved.</p>
                     <div class="flex items-center space-x-6 text-sm">
-                        <a href="#" class="text-gray-400 hover:text-fresh-green transition-colors duration-300">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-red-500 transition-colors duration-300">Privacy Policy</a>
                         <span class="text-gray-600">|</span>
-                        <a href="#" class="text-gray-400 hover:text-fresh-green transition-colors duration-300">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-red-500 transition-colors duration-300">Terms of Service</a>
                     </div>
                 </div>
                 <div class="flex items-center space-x-2 text-gray-400">

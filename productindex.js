@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <h3 class="course-title text-lg font-bold text-gray-800 flex-grow" title="${product.name}">
                                 ${product.name}
                             </h3>
-                            <p class="course-price text-xl text-fresh-green font-semibold mt-2">
+                            <p class="course-price text-xl text-red-600 font-semibold mt-2">
                                 ${product.price}
                             </p>
                         </div>
