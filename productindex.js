@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, query, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// --- FIREBASE CONFIGURATION ---
+// --- CONFIGURATION ---
 const firebaseConfig = {
     apiKey: "AIzaSyAVu0_PvOOA_1D1Dk0La4Gy-X_dlrq5n4s",
     authDomain: "mindinu-vege.firebaseapp.com",
@@ -12,115 +12,147 @@ const firebaseConfig = {
     appId: "1:122155864706:web:42f6c6aff06b3aeb779a9b",
     measurementId: "G-8X3DYYXF2K"
 };
+const imgbbApiKey = '65be3e7586c166102752452ff286571a';
+const whatsappNumber = '94779004063';
 
-// --- INITIALIZE FIREBASE APP ---
+// --- INITIALIZE FIREBASE ---
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-
+// --- MAIN SCRIPT ---
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // --- DOM ELEMENTS ---
     const productsGrid = document.getElementById('products-grid');
-    let allProducts = [];
-    let productsSwiper; 
+    const productsContainer = document.getElementById('products');
+    
+    const modal = document.getElementById('course-modal');
+    if (!modal) return; // Stop if modal is not on the page
+    
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    const closeModalBtn = document.getElementById('modal-close-btn');
+    const enrollForm = document.getElementById('enroll-form');
+    const enrollNameInput = document.getElementById('enroll-name');
+    const enrollSlipInput = document.getElementById('enroll-slip');
+    const slipPreview = document.getElementById('slip-preview');
+    const enrollNowBtn = document.getElementById('enroll-now-btn');
+    const enrollStatus = document.getElementById('enroll-status');
+    let currentCourseTitle = '';
 
-    // Swiper initialization
-    function initializeSwiper() {
-        if (productsSwiper) {
-            productsSwiper.destroy(true, true);
-        }
-        productsSwiper = new Swiper('.products-swiper', {
-            loop: false, // Loop is often better as false when dynamically adding/removing content
-            slidesPerView: 2,
-            spaceBetween: 16,
-            pagination: {
-                el: '.products-swiper .swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                640: { slidesPerView: 2, spaceBetween: 20 },
-                768: { slidesPerView: 3, spaceBetween: 24 },
-                1024: { slidesPerView: 4, spaceBetween: 24 },
-            }
-        });
-    }
-
-    // Function to render products into the slider
-    function renderProducts() {
+    // --- DATA FETCHING & RENDERING (FOR GRID LAYOUT) ---
+    function renderProducts(products) {
         if (!productsGrid) return;
         
-        productsGrid.innerHTML = ''; // Clear previous slides
-        if (allProducts.length === 0) {
+        let productsHTML = '';
+        if (products.length === 0) {
             productsGrid.innerHTML = '<p class="text-center text-gray-500 col-span-full">No courses available.</p>';
             return;
         }
 
-        allProducts.forEach(product => {
-            const firstImageUrl = product.imageUrl && product.imageUrl.trim() !== '' ? product.imageUrl.split(',')[0].trim() : 'https://via.placeholder.com/400x300.png?text=No+Image';
-            
-            // ========== HTML STRUCTURE EDITED HERE ==========
-            // Added 'course-card', 'course-title', 'course-price' classes
-            // Made the main div clickable by adding cursor-pointer
-            const productSlideHTML = `
-                <div class="swiper-slide h-auto">
-                    <div class="course-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 cursor-pointer h-full flex flex-col">
-                        <img src="${firstImageUrl}" alt="${product.name}" class="w-full h-44 object-cover">
-                        <div class="p-4 flex flex-col flex-grow">
-                            <h3 class="course-title text-lg font-bold text-gray-800 flex-grow" title="${product.name}">
-                                ${product.name}
-                            </h3>
-                            <p class="course-price text-xl text-red-600 font-semibold mt-2">
-                                ${product.price}
-                            </p>
-                        </div>
+        products.forEach(product => {
+            const firstImageUrl = product.imageUrl?.split(',')[0].trim() || 'https://via.placeholder.com/1080x1080.png?text=No+Image';
+            productsHTML += `
+                <div class="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="aspect-square w-full overflow-hidden">
+                        <img src="${firstImageUrl}" alt="${product.name}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow">
+                        <h3 class="course-title text-lg font-bold text-gray-800 flex-grow">${product.name}</h3>
+                        <p class="course-price text-xl text-red-600 font-semibold mt-2">${product.price}</p>
+                        <button class="open-modal-btn mt-4 w-full bg-black text-white font-bold py-2 px-4 rounded-lg transition duration-300 hover:bg-red-500"
+                            data-title="${product.name}"
+                            data-price="${product.price}"
+                            data-description="${product.description || 'No description available.'}">
+                            Get This Course
+                        </button>
                     </div>
                 </div>`;
-            productsGrid.innerHTML += productSlideHTML;
         });
-
-        // Re-initialize or update the swiper after rendering slides
-        if (productsSwiper) {
-            productsSwiper.update();
-        } else {
-            initializeSwiper();
-        }
+        productsGrid.innerHTML = productsHTML;
     }
-
-    // Fetch products from Firebase and render them
+    
     const productsQuery = query(collection(db, "products"));
-    onSnapshot(productsQuery, (querySnapshot) => {
-        allProducts = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        renderProducts();
-    }, (error) => {
-        console.error("Error fetching products: ", error);
-        productsGrid.innerHTML = '<p class="text-center text-red-500 col-span-full">Could not load products.</p>';
+    onSnapshot(productsQuery, (snapshot) => {
+        const allProducts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        renderProducts(allProducts);
     });
 
-    // ========== WHATSAPP CLICK LOGIC ADDED HERE ==========
-    const whatsappNumber = '94779004063'; 
-    const productsContainer = document.getElementById('products'); // The parent section
+    // --- MODAL & FORM LOGIC ---
+    function openModal(title, description, price) {
+        currentCourseTitle = title;
+        modalTitle.textContent = title;
+        modalDescription.innerHTML = description.replace(/\\n/g, '<br>');
+        enrollForm.reset();
+        slipPreview.classList.add('hidden');
+        enrollNowBtn.disabled = true;
+        enrollStatus.textContent = '';
+        modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+        modal.classList.add('hidden');
+    }
+
+    function validateForm() {
+        const nameFilled = enrollNameInput.value.trim() !== '';
+        const slipSelected = enrollSlipInput.files.length > 0;
+        enrollNowBtn.disabled = !(nameFilled && slipSelected);
+    }
+    
+    enrollNameInput.addEventListener('input', validateForm);
+    enrollSlipInput.addEventListener('change', () => {
+        const file = enrollSlipInput.files[0];
+        if (file) {
+            slipPreview.src = URL.createObjectURL(file);
+            slipPreview.classList.remove('hidden');
+        } else {
+            slipPreview.classList.add('hidden');
+        }
+        validateForm();
+    });
+
+    enrollForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        enrollNowBtn.disabled = true;
+        enrollStatus.textContent = 'Uploading payment slip...';
+        
+        const file = enrollSlipInput.files[0];
+        const formData = new FormData();
+        formData.append('image', file);
+        
+        fetch(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, { method: 'POST', body: formData })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const slipUrl = data.data.url;
+                const studentName = enrollNameInput.value.trim();
+                const whatsappMessage = `New Course Enrollment!\n-------------------------------\nStudent Name: *${studentName}*\nCourse: *${currentCourseTitle}*\nPayment Slip: ${slipUrl}\n-------------------------------\nPlease verify and confirm.`;
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+                window.open(whatsappURL, '_blank');
+                enrollStatus.textContent = 'Redirecting to WhatsApp...';
+                setTimeout(closeModal, 2000);
+            } else {
+                throw new Error(data.error.message);
+            }
+        })
+        .catch(error => {
+            console.error('Upload Failed:', error);
+            enrollStatus.textContent = `Error: ${error.message}`;
+            enrollNowBtn.disabled = false;
+        });
+    });
 
     if (productsContainer) {
         productsContainer.addEventListener('click', function(event) {
-            const card = event.target.closest('.course-card');
-
-            if (card) {
-                const titleElement = card.querySelector('.course-title');
-                const priceElement = card.querySelector('.course-price');
-
-                const courseTitle = titleElement ? titleElement.textContent.trim() : 'a selected course';
-                const coursePrice = priceElement ? priceElement.textContent.trim() : 'N/A';
-
-                const whatsappMessage = `
-Hello! I'm interested in the "${courseTitle}" course.
-The listed price is ${coursePrice}.
-Can you please provide me with more details on how to enroll?
-Thank you.
-                `.trim();
-
-                const encodedMessage = encodeURIComponent(whatsappMessage);
-                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-                window.open(whatsappURL, '_blank');
+            const button = event.target.closest('.open-modal-btn');
+            if (button) {
+                openModal(button.dataset.title, button.dataset.description, button.closest('.flex-col').querySelector('.course-price').textContent.trim());
             }
         });
     }
+
+    closeModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => e.target === modal && closeModal());
+    document.addEventListener('keydown', (e) => e.key === "Escape" && !modal.classList.contains('hidden') && closeModal());
 });
