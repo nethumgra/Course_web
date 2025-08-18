@@ -1,5 +1,3 @@
-// firebase-init.js
-
 // IMPORTANT: Make sure your Firebase Config is correct
 const firebaseConfig = {
     apiKey: "AIzaSyCV2IrYyrDuvwo0KrDkErYU5jQzF_Ay33A",
@@ -17,5 +15,5 @@ if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
 
-// Create references to be used by other scripts
-const database = firebase.database();
+// Create a reference to FIRESTORE to be used by other scripts
+const firestore = firebase.firestore();

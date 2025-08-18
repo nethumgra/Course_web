@@ -4,11 +4,13 @@
      <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find ur Course - Final Version</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Removed duplicate Tailwind CSS CDN import -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
         // Tailwind CSS Configuration
@@ -107,7 +109,7 @@
     justify-content: center;
     font-size: 20px; /* --- icon එකේ size එක පොඩි කළා --- */
     text-decoration: none;
-    box-shadow: 0 4px Bpx rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     transition: transform 0.2s ease-in-out;
 }
 
@@ -293,7 +295,7 @@
        
         
 
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+   
     <script src="navbar.js"></script>
 
 <section id="about" class="py-16 md:py-24 bg-white">
@@ -525,49 +527,23 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 </section>
 
-<section id="videos" class="py-16 md:py-20 bg-white">
+<section id="video-gallery" class="py-16 md:py-24 bg-white">
     <div class="container mx-auto px-4">
-        
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
-                Our Student's Video Projects
-            </h2>
-            <p class="text-lg text-gray-600 mt-2">
-                Check out video projects and tutorials from our students.
-            </p>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Video Tutorials & Highlights</h2>
+            <p class="text-lg text-gray-600 mt-2">See our courses in action and learn from our latest tutorials.</p>
         </div>
 
-        <div class="swiper videos-swiper relative">
-            <div class="swiper-wrapper">
-                
-                <div class="swiper-slide">
-                    <div class="aspect-video w-full rounded-lg overflow-hidden shadow-lg bg-black">
-                        <iframe class="w-full h-full" data-src="https://youtu.be/p4jGr0LMyuI?si=iS1rB3qE4wG_ppcs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
+        <div class="swiper video-swiper relative pb-16">
+            <div id="video-swiper-wrapper" class="swiper-wrapper">
                 </div>
-
-                <div class="swiper-slide">
-                    <div class="aspect-video w-full rounded-lg overflow-hidden shadow-lg bg-black">
-                        <iframe class="w-full h-full" data-src="https://youtu.be/9ctYSjAG6MY?si=gUNNYthq_PalW0N9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="aspect-video w-full rounded-lg overflow-hidden shadow-lg bg-black">
-                        <iframe class="w-full h-full" data-src="https://youtu.be/9ctYSjAG6MY?si=gUNNYthq_PalW0N9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="aspect-video w-full rounded-lg overflow-hidden shadow-lg bg-black">
-                        <iframe class="w-full h-full" data-src="https://youtu.be/9ctYSjAG6MY?si=gUNNYthq_PalW0N9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                </div>
-                
-            </div>
             
-            <div class="swiper-pagination mt-8 relative"></div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next text-red-500"></div>
+            <div class="swiper-button-prev text-red-500"></div>
         </div>
-        
+    </div>
+</section>
         
     </div>
 </section>
@@ -582,9 +558,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <script>
 
-// gallery.js
 
-// This script now assumes that 'firebase' and 'database' are already initialized by firebase-init.js
 document.addEventListener('DOMContentLoaded', function () {
     const imagesRef = database.ref('images');
     const loadMoreBtn = document.getElementById('load-more-btn');
@@ -677,57 +651,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadImages();
 });
 
-// --- VIDEO SWIPER INITIALIZATION WITH LAZY LOADING ---
-
-// Helper function to load the video in the active slide
-function loadActiveVideo(swiper) {
-    const activeSlide = swiper.slides[swiper.activeIndex];
-    const iframe = activeSlide.querySelector('iframe');
-    
-    // Check if the iframe has a data-src and no src yet
-    if (iframe && iframe.dataset.src && !iframe.src) {
-        // Move the URL from data-src to src to start loading the video
-        iframe.src = iframe.dataset.src;
-    }
-}
-
-const videosSwiper = new Swiper('.videos-swiper', {
-    loop: true,
-    spaceBetween: 30,
-    slidesPerView: 1, 
-
-    pagination: {
-        el: '.videos-swiper .swiper-pagination',
-        clickable: true,
-    },
-    navigation: {
-        nextEl: '.videos-nav-next',
-        prevEl: '.videos-nav-prev',
-    },
-    
-    // Events to trigger the lazy load
-    on: {
-        init: function (swiper) {
-            // Load the video for the first slide when the slider is created
-            loadActiveVideo(swiper);
-        },
-        slideChange: function (swiper) {
-            // Load the video for the new slide when you swipe
-            loadActiveVideo(swiper);
-        },
-    },
-    
-    breakpoints: {
-        768: {
-            slidesPerView: 2,
-            spaceBetween: 20
-        },
-        1024: {
-            slidesPerView: 3,
-            spaceBetween: 30
-        }
-    }
-});
+// video.js
 
 </script>
 
@@ -1173,10 +1097,18 @@ ${message}
     });
 </script>
 
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script type="module" src="productindex.js"></script>
 
-   <script src="reviews.js"></script>
-   <script src="firebase-init.js"></script>
-</body>
+    <script type="module" src="video.js"></script>
+    <script type="module" src="productindex.js"></script>
+    <script type="module" src="main.js"></script>
+
+    <script src="navbar.js"></script>
+    <script src="gallery.js" defer></script>
+    <script src="reviews.js"></script>
+   <script src="load-videos.js"></script>
+   
 </html>
