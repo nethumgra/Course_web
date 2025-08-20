@@ -31,7 +31,15 @@
 
                 <form id="review-form">
                     <div class="mb-4">
-                        <label for="reviewer-name" class="block text-sm font-medium text-gray-700 mb-2">Reviewer's Name:</label>
+                        <label for="reviewer-image" class="block text-sm font-medium text-gray-700 mb-2">Your Photo (Optional):</label>
+                        <input type="file" id="reviewer-image" accept="image/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200">
+                        <div class="mt-4 text-center">
+                           <img id="image-preview" src="" class="max-h-32 mx-auto hidden rounded-full w-24 h-24 object-cover border-4 border-white shadow-md"/>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="reviewer-name" class="block text-sm font-medium text-gray-700 mb-2">Your Name:</label>
                         <input type="text" id="reviewer-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-fresh-green">
                     </div>
                     <div class="mb-4">
@@ -68,27 +76,49 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-database-compat.js"></script>
 
     <script>
+        // --- Firebase Configuration ---
         const firebaseConfig = {
             apiKey: "AIzaSyCV2IrYyrDuvwo0KrDkErYU5jQzF_Ay33A",
             authDomain: "web-course-ba01f.firebaseapp.com",
             databaseURL: "https://web-course-ba01f-default-rtdb.firebaseio.com",
             projectId: "web-course-ba01f",
-            // ... rest of your config keys
         };
 
+        // --- Initialize Firebase ---
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
         const reviewsRef = database.ref('reviews');
 
-        // --- Elements ---
+        // --- Elements for FORM ---
         const reviewForm = document.getElementById('review-form');
+        const submitBtn = document.getElementById('submit-btn');
         const submitStatus = document.getElementById('submit-status');
         const starRatingContainer = document.getElementById('star-rating');
         const ratingValueInput = document.getElementById('rating-value');
         const stars = starRatingContainer.querySelectorAll('.fa-star');
+        const imageInput = document.getElementById('reviewer-image');
+        const imagePreview = document.getElementById('image-preview');
+        const imgbbApiKey = '65be3e7586c166102752452ff286571a';
+        
+        // --- Elements for MANAGEMENT LIST ---
         const reviewsManagementList = document.getElementById('reviews-management-list');
 
-        // --- Star Rating Logic ---
+        // --- LOGIC FOR ADDING REVIEWS ---
+
+        // Image Preview Logic
+        imageInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.classList.remove('hidden');
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Star Rating Logic
         starRatingContainer.addEventListener('click', e => {
             const rating = e.target.dataset.value;
             if (rating) {
@@ -100,62 +130,101 @@
             }
         });
 
-        // --- Review Submission Logic ---
-        reviewForm.addEventListener('submit', function(event) {
-            // ... (submission logic is the same as before)
+        // Review Submission Logic (with Image Upload)
+        reviewForm.addEventListener('submit', async function(event) {
             event.preventDefault();
-            const name = document.getElementById('reviewer-name').value;
+            const name = document.getElementById('reviewer-name').value.trim();
             const rating = parseInt(ratingValueInput.value, 10);
-            const comment = document.getElementById('reviewer-comment').value;
+            const comment = document.getElementById('reviewer-comment').value.trim();
+            const imageFile = imageInput.files[0];
 
             if (rating === 0) {
                 submitStatus.textContent = "Please select a star rating.";
                 return;
             }
-            submitStatus.textContent = "Submitting...";
 
-            reviewsRef.push().set({
-                name: name, rating: rating, comment: comment, timestamp: Date.now()
-            })
-            .then(() => {
+            submitBtn.disabled = true;
+            submitStatus.textContent = "Submitting...";
+            let imageUrl = ''; // Default to empty string
+
+            try {
+                // If an image is selected, upload it first
+                if (imageFile) {
+                    submitStatus.textContent = "Uploading image...";
+                    const formData = new FormData();
+                    formData.append('image', imageFile);
+
+                    const response = await fetch(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, {
+                        method: 'POST',
+                        body: formData,
+                    });
+                    const result = await response.json();
+
+                    if (result.success) {
+                        imageUrl = result.data.url; // Get the URL from ImgBB
+                        submitStatus.textContent = "Image uploaded. Saving review...";
+                    } else {
+                        throw new Error(result.error.message || 'Image upload failed.');
+                    }
+                }
+
+                // Push data to Firebase
+                await reviewsRef.push().set({
+                    name: name,
+                    rating: rating,
+                    comment: comment,
+                    imageUrl: imageUrl, // Save the image URL
+                    timestamp: Date.now()
+                });
+
                 submitStatus.textContent = "✅ Success! Review added.";
                 reviewForm.reset();
                 ratingValueInput.value = 0;
                 stars.forEach(star => star.classList.replace('text-yellow-400', 'text-gray-300'));
-            })
-            .catch(error => { submitStatus.textContent = `❌ Error: ${error.message}`; });
+                imagePreview.classList.add('hidden');
+                imagePreview.src = '';
+
+            } catch (error) {
+                submitStatus.textContent = `❌ Error: ${error.message}`;
+            } finally {
+                submitBtn.disabled = false;
+            }
         });
 
-        // --- MANAGE REVIEWS LOGIC (අලුත් කොටස) ---
 
-        // 1. Display existing reviews
+        // --- LOGIC FOR MANAGING REVIEWS ---
+
+        // 1. Display Existing Reviews
         reviewsRef.orderByChild('timestamp').on('child_added', function(snapshot) {
             const reviewKey = snapshot.key;
             const reviewData = snapshot.val();
-
-            // Generate star icons
+            const reviewerImage = reviewData.imageUrl || 'https://i.ibb.co/68XqnT3/default-avatar.png'; // Default avatar
             let starsHTML = '';
             for (let i = 1; i <= 5; i++) {
                 starsHTML += `<i class="fas fa-star ${i <= reviewData.rating ? 'text-yellow-400' : 'text-gray-300'}"></i>`;
             }
 
             const reviewCard = document.createElement('div');
-            reviewCard.classList.add('bg-white', 'p-4', 'rounded-lg', 'shadow-md', 'flex', 'items-center', 'justify-between');
+            reviewCard.className = 'bg-white p-4 rounded-lg shadow-md flex items-center justify-between gap-4';
             reviewCard.setAttribute('data-key', reviewKey);
+            
             reviewCard.innerHTML = `
-                <div>
-                    <div class="flex items-center mb-1">
-                        <h4 class="font-bold text-gray-800 mr-4">${reviewData.name}</h4>
-                        <div class="flex">${starsHTML}</div>
+                <div class="flex items-center gap-4 flex-grow">
+                    <img src="${reviewerImage}" alt="${reviewData.name}" class="w-16 h-16 rounded-full object-cover flex-shrink-0 border-2 border-gray-200">
+                    <div class="flex-grow">
+                        <div class="flex flex-col sm:flex-row sm:items-center mb-1">
+                            <h4 class="font-bold text-gray-800 mr-4">${reviewData.name}</h4>
+                            <div class="flex">${starsHTML}</div>
+                        </div>
+                        <p class="text-gray-600 text-sm">"${reviewData.comment}"</p>
                     </div>
-                    <p class="text-gray-600 text-sm">"${reviewData.comment}"</p>
                 </div>
-                <button data-id="${reviewKey}" class="delete-review-btn bg-red-100 text-red-600 hover:bg-red-500 hover:text-white rounded-full w-8 h-8 flex items-center justify-center font-bold transition-colors">&times;</button>
+                <button data-id="${reviewKey}" class="delete-review-btn bg-red-100 text-red-600 hover:bg-red-500 hover:text-white rounded-full w-10 h-10 flex items-center justify-center font-bold transition-colors flex-shrink-0 text-xl">&times;</button>
             `;
             reviewsManagementList.prepend(reviewCard); // Prepend to show newest first
         });
 
-        // 2. Remove review card from UI when deleted from Firebase
+        // 2. Remove Review Card from UI when deleted
         reviewsRef.on('child_removed', function(snapshot) {
             const reviewKey = snapshot.key;
             const cardToRemove = reviewsManagementList.querySelector(`div[data-key="${reviewKey}"]`);
@@ -164,10 +233,11 @@
             }
         });
 
-        // 3. Handle delete button clicks
+        // 3. Handle Delete Button Clicks
         reviewsManagementList.addEventListener('click', function(event) {
-            if (event.target.classList.contains('delete-review-btn')) {
-                const reviewKey = event.target.dataset.id;
+            const deleteButton = event.target.closest('.delete-review-btn');
+            if (deleteButton) {
+                const reviewKey = deleteButton.dataset.id;
                 if (confirm('Are you sure you want to delete this review?')) {
                     database.ref('reviews/' + reviewKey).remove();
                 }

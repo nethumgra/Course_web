@@ -49,26 +49,7 @@ function generateStars(rating) {
     return starsHTML;
 }
 
-// Listen for new reviews and add them to the slider
-reviewsRef.on('child_added', function(snapshot) {
-    const review = snapshot.val();
-    const firstLetter = review.name.charAt(0).toUpperCase();
 
-    const newSlideHTML = `
-        <div class="swiper-slide h-auto">
-            <div class="bg-white rounded-lg p-8 shadow-lg h-full flex flex-col">
-                <div class="flex items-center mb-4">
-                    <div class="w-16 h-16 rounded-full bg-fresh-green flex items-center justify-center text-white text-2xl font-bold mr-4">${firstLetter}</div>
-                    <div>
-                        <h4 class="font-bold text-gray-800">${review.name}</h4>
-                        <div class="flex">${generateStars(review.rating)}</div>
-                    </div>
-                </div>
-                <p class="text-gray-600 italic flex-grow">"${review.comment}"</p>
-            </div>
-        </div>
-    `;
 
-    testimonialsSwiper.prependSlide(newSlideHTML);
-    testimonialsSwiper.update();
-});
+testimonialsSwiper.prependSlide(newSlideHTML);
+testimonialsSwiper.update();

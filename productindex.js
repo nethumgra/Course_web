@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div class="p-4 flex flex-col flex-grow">
                         <h3 class="course-title text-lg font-bold text-gray-800 flex-grow">${product.name}</h3>
-                        <p class="course-price text-xl text-red-600 font-semibold mt-2">${product.price}</p>
+                        <p class="course-price text-xl text-white font-semibold mt-2">${product.price}</p>
                         <button class="open-modal-btn mt-4 w-full bg-black text-white font-bold py-2 px-4 rounded-lg transition duration-300 hover:bg-red-500"
                             data-title="${product.name}"
                             data-price="${product.price}"

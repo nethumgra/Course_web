@@ -130,6 +130,58 @@
     background-color: #000000;
 }
 
+
+
+/* Swiper Container එකට දෙන Styles */
+#hero-banner-slider { /* ID එක මෙතනට එකතු කළා */
+    width: 100%;
+    position: relative;
+    background-color: #e0e0e0; /* Fallback color */
+    
+    /* Mobile aspect ratio */
+    aspect-ratio: 10 / 5; 
+}
+
+/* Desktop Screen වලදී aspect ratio එක වෙනස් කිරීම */
+@media (min-width: 768px) {
+    #hero-banner-slider { /* ID එක මෙතනටත් එකතු කළා */
+        /* Desktop aspect ratio */
+        aspect-ratio: 18 / 5;
+    }
+}
+
+/* හැම slide එකක් ඇතුලේ තියෙන image div එකට */
+#hero-banner-slider .hero-image { /* ID එක ඉස්සරහට දාලා scope කළා */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Mobile එකේදී Desktop Banner එක හංගනවා */
+#hero-banner-slider .desktop-banner { display: none; }
+#hero-banner-slider .mobile-banner { display: block; }
+
+/* Desktop එකේදී Mobile Banner එක හංගනවා */
+@media (min-width: 768px) {
+    #hero-banner-slider .desktop-banner { display: block; }
+    #hero-banner-slider .mobile-banner { display: none; }
+}
+
+/* Navigation button පාට වෙනස් කිරීම */
+#hero-banner-slider .swiper-button-next,
+#hero-banner-slider .swiper-button-prev {
+    color: #ffffff;
+    --swiper-navigation-size: 30px;
+}
+
+/* Pagination dot පාට වෙනස් කිරීම */
+#hero-banner-slider .swiper-pagination-bullet-active {
+    background-color: #ffffff;
+}
 </style>
 
 </head>
@@ -226,39 +278,40 @@
  </div>
 </div>
 
-    <main class="mt-4 px-4 sm:px-10">
-        <div class="swiper myHeroSwiper w-full aspect-[10/5] md:aspect-[18/5] rounded-2xl">
-            <div class="swiper-wrapper">
+    <div id="hero-banner-slider" class="swiper myHeroSwiper">
+    <div class="swiper-wrapper">
 
-    
-
-
-<div class="swiper-slide bg-hero-pink" data-background="2.jpg">
-    </div>
-
-
-<div class="swiper-slide bg-hero-blue" data-background="1.jpg">
-    </div>
-
-            </div>
-            <div class="swiper-pagination"></div>
+        <div class="swiper-slide">
+            <div class="hero-image mobile-banner" style="background-image: url('1.jpg');"></div>
+            <div class="hero-image desktop-banner" style="background-image: url('1234.png');"></div>
         </div>
+
+       
+
+        <div class="swiper-slide">
+            <div class="hero-image mobile-banner" style="background-image: url('hi3.jpg');"></div>
+            <div class="hero-image desktop-banner" style="background-image: url('12.png');"></div>
+        </div>
+
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
 
         <section class="mt-5">
             <div class="swiper category-slider">
-                <div class="swiper-wrapper pb-8">
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (1).png" alt="Programming" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Programming</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (2).png" alt="Design" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Design</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (3).png" alt="Business" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Business</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (4).png" alt="Marketing" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Marketing</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (5).png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (6).png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (7).png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (8).png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (9).png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
-                    <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="l1 (10).png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Language</p></a></div>
+                <div class="swiper-wrapper pb-5">
                     
-                </div>
+               <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/qYC0GSwc/L1-1.png" alt="Design" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Adobe Premiere Pro</p></a></div>
+<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/SDPBbTqp/L1-2.png" alt="Business" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Adobe Photoshop</p></a></div>
+<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/rh0vRjT/L1-3.png" alt="Marketing" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Adobe Illustrator</p></a></div>
+<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/svfj1n9f/L1-4.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Adobe After Effects</p></a></div>
+<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/zVL8Mrcv/L1-5.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Filmora</p></a></div>
+<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/spb12hSC/L1-6.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Adobe Lightroom</p></a></div>
+<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/zhM7GbKn/L1-7.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Figma</p></a></div>
+<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/VYbN9FxT/L1-8.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Google Adsense</p></a></div>
+<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/HTRRKJb1/L1-9.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">HTML and CSS</p></a></div>
             </div>
         </section>
 
@@ -655,31 +708,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </script>
 
-<section id="testimonials" class="py-8 md:py-20 bg-white">
+<section id="testimonials" class="py-16 md:py-24 bg-gray-50">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
                 What Our Students Say
             </h2>
             <p class="text-lg text-gray-600 mt-2 max-w-3xl mx-auto">
                 Genuine experiences and honest feedback shared by our vibrant learning community.
             </p>
+        </div>
 
         <div class="swiper testimonials-swiper relative">
-            <div id="testimonials-swiper-wrapper" class="swiper-wrapper pb-16">
+            <div id="testimonials-swiper-wrapper" class="swiper-wrapper">
                 </div>
-
-             <div class="mt-8">
-                <a href="add-review.html" 
-                   class="inline-block bg-black text-white font-bold py-3 px-8 rounded-full transition duration-300 hover:bg-red-500 hover:scale-105 transform">
-                    Add Your Review
-                </a>
-            </div>
+            
+            <div class="swiper-pagination !relative !bottom-0 pt-8"></div>
         </div>
 
-            <div class="swiper-pagination"></div>
+        <div class="text-center mt-8">
+            <a href="reviews.html" 
+               class="inline-block bg-black text-white font-bold py-3 px-8 rounded-full transition duration-300 hover:bg-red-500 hover:scale-105 transform">
+                Add Your Review
+            </a>
         </div>
-
     </div>
 </section>
 
@@ -692,24 +744,51 @@ document.addEventListener('DOMContentLoaded', function () {
             <p class="text-lg text-gray-600 mt-2">Proudly partnered with and trusted by some of the world’s most respected, innovative, and industry-leading companies across diverse sectors.</p>
         </div>
 
-        <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20">
-            <div>
-                <a href="#" target="_blank">
-                    <img src="tharindu production logos-01.png" 
-                         alt="Partner Logo 1" 
-                         class="h-50 md:h-50 transition-all duration-300">
-                </a>
-            </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-12 gap-y-10 justify-items-center items-center">
             
-            <div>
-                <a href="#" target="_blank">
-                    <img src="tharindu g¾phic logos-01.png" 
-                         alt="Partner Logo 2" 
-                         class="h-50 md:h-50 transition-all duration-300">
-                </a>
-            </div>
+            <a href="#" target="_blank" class="flex justify-center items-center">
+                <img src="tharindu production logos-01.png" 
+                     alt="Tharindu Production Logo" 
+                     class="max-h-80 w-auto transition-all duration-300">
+            </a>
+            
+            <a href="#" target="_blank" class="flex justify-center items-center">
+                <img src="tharindu g¾phic logos-01.png" 
+                     alt="Tharindu Graphic Logo" 
+                     class="max-h-25 w-auto transition-all duration-300">
+            </a>
 
-           
+            <a href="#" target="_blank" class="flex justify-center items-center">
+                <img src="WATENMA LOGO-01-01.png" 
+                     alt="Watenma Logo" 
+                     class="max-h-25 w-auto transition-all duration-300">
+            </a>
+    
+            <a href="#" target="_blank" class="flex justify-center items-center">
+                <img src="ns logo2 (1).png" 
+                     alt="NS Logo" 
+                     class="max-h-25 w-auto transition-all duration-300">
+            </a>
+    
+            <a href="#" target="_blank" class="flex justify-center items-center">
+                <img src="logo edit walata api-01.png" 
+                     alt="Logo Edit Walata Api Logo" 
+                     class="max-h-25 w-auto transition-all duration-300">
+            </a>
+    
+            <a href="#" target="_blank" class="flex justify-center items-center">
+                <img src="DTG MARKETING-01.png" 
+                     alt="DTG Marketing Logo" 
+                     class="max-h-23 w-auto transition-all duration-300">
+            </a>
+
+            
+
+            <a href="#" target="_blank" class="flex justify-center items-center">
+                <img src="art-01.png" 
+                     alt="Art Logo" 
+                     class="max-h-30 w-auto transition-all duration-300">
+            </a>
             
         </div>
     </div>
@@ -717,43 +796,89 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 <script>
-    // This script will find your manual reviews and turn them into a slider.
-    document.addEventListener('DOMContentLoaded', function() {
-        const testimonialsSwiper = new Swiper('.testimonials-swiper', {
-            // General settings
-            loop: true,
-            spaceBetween: 30, //  කාඩ්පත් අතර ඉඩ
-            
-            // Autoplay settings
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            
-            // Pagination dots at the bottom
-            pagination: {
-                el: '.testimonials-swiper .swiper-pagination',
-                clickable: true,
-            },
+   
+document.addEventListener('DOMContentLoaded', function() {
+    const database = firebase.database();
+    const reviewsRef = database.ref('reviews');
+    const testimonialsWrapper = document.getElementById('testimonials-swiper-wrapper');
 
-            // --- Breakpoints for different screen sizes ---
-            
-            // Default view (for mobile)
-            slidesPerView: 1,
+    if (testimonialsWrapper) {
 
-            // Settings for larger screens
-            breakpoints: {
-                // For tablets (768px and wider)
-                768: {
-                    slidesPerView: 2, // reviews 2ක් පේනවා
-                },
-                // For PCs (1024px and wider)
-                1024: {
-                    slidesPerView: 3, // reviews 3ක් පේනවා
-                }
+        function escapeHTML(str) {
+            if (typeof str !== 'string') return '';
+            return str.replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        let swiper;
+        let isSwiperInitialized = false;
+
+        // This CSS rule will align all cards to the top of the row
+        testimonialsWrapper.style.alignItems = 'flex-start';
+
+        reviewsRef.orderByChild('timestamp').limitToLast(10).on('child_added', function(snapshot) {
+            const reviewData = snapshot.val();
+            if (!reviewData) return;
+
+            const safeName = escapeHTML(reviewData.name);
+            const safeComment = escapeHTML(reviewData.comment);
+            const reviewerImage = reviewData.imageUrl || 'https://i.ibb.co/68XqnT3/default-avatar.png';
+
+            let starsHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                starsHTML += `<i class="fas fa-star ${i <= reviewData.rating ? 'text-yellow-400' : 'text-gray-300'}"></i>`;
+            }
+
+            const slide = document.createElement('div');
+            // REMOVED h-auto class
+            slide.className = 'swiper-slide pb-4';
+
+            // Card design WITHOUT 'h-full' and 'flex-grow' to allow variable height
+            slide.innerHTML = `
+                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col border border-slate-200/80 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <header class="flex items-center gap-4 mb-4">
+                        <img src="${reviewerImage}" alt="Review from ${safeName}" class="w-14 h-14 rounded-full object-cover shadow-sm">
+                        <div class="flex-grow">
+                            <h4 class="font-bold text-slate-800">${safeName}</h4>
+                            <div class="text-yellow-400 text-lg">
+                                ${starsHTML}
+                            </div>
+                        </div>
+                    </header>
+                    <blockquote class="text-slate-600 leading-relaxed text-left border-l-4 border-slate-200 pl-4 italic">
+                        <p>${safeComment}</p>
+                    </blockquote>
+                </div>
+            `;
+            
+            testimonialsWrapper.prepend(slide);
+
+            if (!isSwiperInitialized) {
+                swiper = new Swiper('.testimonials-swiper', {
+                    loop: true,
+                    spaceBetween: 30,
+                    // REMOVED autoHeight: true
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.testimonials-swiper .swiper-pagination',
+                        clickable: true,
+                    },
+                    breakpoints: {
+                        640: { slidesPerView: 1 },
+                        768: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 }
+                    }
+                });
+                isSwiperInitialized = true;
+            } else {
+                swiper.update();
             }
         });
-    });
+    }
+});
+</script>
 </script>
 <section id="contact" class="py-16 md:py-24 bg-white overflow-hidden">
     <div class="container mx-auto px-4 max-w-screen-xl">
