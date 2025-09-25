@@ -11,7 +11,6 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    
 
     <script>
         // Tailwind CSS Configuration
@@ -197,7 +196,7 @@
 </style>
 
 </head>
-<script src="https://fpyf8.com/88/tag.min.js" data-zone="170965" async data-cfasync="false"></script>
+
 <body class="font-sans leading-relaxed text-gray-800 bg-gray-50">
 
   <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md py-3">
@@ -1251,8 +1250,20 @@ ${message}
     <script src="gallery.js" defer></script>
     <script src="reviews.js"></script>
    <script src="load-videos.js"></script>
-   <script src="load-videos.js"></script>
-   <script src="sw.js"></script>
-
    
+   
+<script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
+
 </html>
