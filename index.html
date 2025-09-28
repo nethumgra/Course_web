@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Waultdotdesignacademy | Home Page</title>
-    <!-- Removed duplicate Tailwind CSS CDN import -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -36,17 +35,15 @@
                 }
             }
         }
-
     </script>
 
     <style>
-
-         /* Custom styles for Swiper pagination dots */
+        /* Custom styles for Swiper pagination dots */
         .products-swiper .swiper-pagination-bullet-active {
             background-color: #22c55e;
         }
 
-   /* Small style for the modal's active thumbnail */
+        /* Small style for the modal's active thumbnail */
         #modal-thumbnails .thumbnail.active {
             border: 2px solid #22c55e;
         }
@@ -54,280 +51,266 @@
         .dropdown:hover .dropdown-menu { display: block; }
         .swiper-pagination-bullet-active { background-color: #1f2937; }
 
-
-    @keyframes bob-y {
-        0%, 100% {
-            transform: translateY(0);
+        @keyframes bob-y {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
         }
-        50% {
-            transform: translateY(-8px);
+
+        .animate-bob {
+            animation: bob-y 3s ease-in-out infinite;
         }
-    }
 
-    .animate-bob {
-        animation: bob-y 3s ease-in-out infinite;
-    }
+        .gallery-swiper .swiper-button-next,
+        .gallery-swiper .swiper-button-prev {
+            color: #22c55e; /* Your fresh-green color */
+            background-color: rgba(255, 255, 255, 0.7);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
 
-.gallery-swiper .swiper-button-next,
-.gallery-swiper .swiper-button-prev {
-    color: #22c55e; /* Your fresh-green color */
-    background-color: rgba(255, 255, 255, 0.7);
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+        .gallery-swiper .swiper-button-next:after,
+        .gallery-swiper .swiper-button-prev:after {
+            font-size: 18px;
+            font-weight: bold;
+        }
 
-.gallery-swiper .swiper-button-next:after,
-.gallery-swiper .swiper-button-prev:after {
-    font-size: 18px;
-    font-weight: bold;
-}
+        .gallery-swiper .swiper-pagination-bullet-active {
+            background-color: #16a34a; /* Your dark-green color */
+        }
 
-.gallery-swiper .swiper-pagination-bullet-active {
-    background-color: #16a34a; /* Your dark-green color */
-}
+        /* === Floating Social Buttons Styles (Smaller Version) === */
+        .floating-social-buttons {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-/* === Floating Social Buttons Styles (Smaller Version) === */
-.floating-social-buttons {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+        .social-button {
+            width: 50px;      /* --- මෙතන පොඩි කළා --- */
+            height: 50px;     /* --- මෙතන පොඩි කළා --- */
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px; /* --- icon එකේ size එක පොඩි කළා --- */
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease-in-out;
+        }
 
-.social-button {
-    width: 50px;     /* --- මෙතන පොඩි කළා --- */
-    height: 50px;    /* --- මෙතන පොඩි කළා --- */
-    border-radius: 50%;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px; /* --- icon එකේ size එක පොඩි කළා --- */
-    text-decoration: none;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease-in-out;
-}
+        .social-button:hover {
+            transform: scale(1.1);
+        }
 
-.social-button:hover {
-    transform: scale(1.1);
-}
+        /* Brand පාටවල් */
+        .social-button.facebook {
+            background-color: #1877F2;
+        }
 
-/* Brand පාටවල් */
-.social-button.facebook {
-    background-color: #1877F2;
-}
+        .social-button.instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+        }
 
-.social-button.instagram {
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
-}
+        .social-button.tiktok {
+            background-color: #000000;
+        }
 
-.social-button.tiktok {
-    background-color: #000000;
-}
+        /* Swiper Container එකට දෙන Styles */
+        #hero-banner-slider { /* ID එක මෙතනට එකතු කළා */
+            width: 100%;
+            position: relative;
+            background-color: #e0e0e0; /* Fallback color */
+            
+            /* Mobile aspect ratio */
+            aspect-ratio: 10 / 5; 
+        }
 
+        /* Desktop Screen වලදී aspect ratio එක වෙනස් කිරීම */
+        @media (min-width: 768px) {
+            #hero-banner-slider { /* ID එක මෙතනටත් එකතු කළා */
+                /* Desktop aspect ratio */
+                aspect-ratio: 18 / 5;
+            }
+        }
 
+        /* හැම slide එකක් ඇතුලේ තියෙන image div එකට */
+        #hero-banner-slider .hero-image { /* ID එක ඉස්සරහට දාලා scope කළා */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
 
-/* Swiper Container එකට දෙන Styles */
-#hero-banner-slider { /* ID එක මෙතනට එකතු කළා */
-    width: 100%;
-    position: relative;
-    background-color: #e0e0e0; /* Fallback color */
-    
-    /* Mobile aspect ratio */
-    aspect-ratio: 10 / 5; 
-}
+        /* Mobile එකේදී Desktop Banner එක හංගනවා */
+        #hero-banner-slider .desktop-banner { display: none; }
+        #hero-banner-slider .mobile-banner { display: block; }
 
-/* Desktop Screen වලදී aspect ratio එක වෙනස් කිරීම */
-@media (min-width: 768px) {
-    #hero-banner-slider { /* ID එක මෙතනටත් එකතු කළා */
-        /* Desktop aspect ratio */
-        aspect-ratio: 18 / 5;
-    }
-}
+        /* Desktop එකේදී Mobile Banner එක හංගනවා */
+        @media (min-width: 768px) {
+            #hero-banner-slider .desktop-banner { display: block; }
+            #hero-banner-slider .mobile-banner { display: none; }
+        }
 
-/* හැම slide එකක් ඇතුලේ තියෙන image div එකට */
-#hero-banner-slider .hero-image { /* ID එක ඉස්සරහට දාලා scope කළා */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-}
+        /* Navigation button පාට වෙනස් කිරීම */
+        #hero-banner-slider .swiper-button-next,
+        #hero-banner-slider .swiper-button-prev {
+            color: #ffffff;
+            --swiper-navigation-size: 30px;
+        }
 
-/* Mobile එකේදී Desktop Banner එක හංගනවා */
-#hero-banner-slider .desktop-banner { display: none; }
-#hero-banner-slider .mobile-banner { display: block; }
+        /* Pagination dot පාට වෙනස් කිරීම */
+        #hero-banner-slider .swiper-pagination-bullet-active {
+            background-color: #ffffff;
+        }
 
-/* Desktop එකේදී Mobile Banner එක හංගනවා */
-@media (min-width: 768px) {
-    #hero-banner-slider .desktop-banner { display: block; }
-    #hero-banner-slider .mobile-banner { display: none; }
-}
+        /* YouTube Button Styles */
+        .social-button.youtube {
+            background-color: #FF0000; /* YouTube නිල රතු පාට */
+        }
 
-/* Navigation button පාට වෙනස් කිරීම */
-#hero-banner-slider .swiper-button-next,
-#hero-banner-slider .swiper-button-prev {
-    color: #ffffff;
-    --swiper-navigation-size: 30px;
-}
-
-/* Pagination dot පාට වෙනස් කිරීම */
-#hero-banner-slider .swiper-pagination-bullet-active {
-    background-color: #ffffff;
-}
-
-
-/* YouTube Button Styles */
-.social-button.youtube {
-    background-color: #FF0000; /* YouTube නිල රතු පාට */
-}
-
-/* Optional: Add a hover effect like the others */
-.social-button.youtube:hover {
-    background-color: #c40202; /* Hover කරන විට මඳක් තද රතු පැහැයක් */
-}
-</style>
-
+        /* Optional: Add a hover effect like the others */
+        .social-button.youtube:hover {
+            background-color: #c40202; /* Hover කරන විට මඳක් තද රතු පැහැයක් */
+        }
+    </style>
 </head>
 
 <body class="font-sans leading-relaxed text-gray-800 bg-gray-50">
 
-  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md py-3">
-  <div class="container mx-auto px-4 flex justify-between items-center">
-   <div class="flex-shrink-0">
-    <a href="#"><img src="logo.png" alt="Find ur Course" class="h-10 md:h-12"></a>
-   </div>
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md py-3">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex-shrink-0">
+                <a href="#"><img src="logo.png" alt="Find ur Course" class="h-10 md:h-12"></a>
+            </div>
 
-   <div class="flex-grow mx-8 hidden md:block">
-    <div class="relative">
-        <input type="text" placeholder="Search for courses, skills, or topics..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
-        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-        <button class="absolute right-0 top-0 h-full px-4 bg-red-500 text-white rounded-r-lg hover:bg-black transition duration-300">
-            <i class="fas fa-search"></i>
-        </button>
-    </div>
-</div>
+            <div class="flex-grow mx-8 hidden md:block">
+                <div class="relative">
+                    <input type="text" placeholder="Search for courses, skills, or topics..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                    <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <button class="absolute right-0 top-0 h-full px-4 bg-red-500 text-white rounded-r-lg hover:bg-black transition duration-300">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
 
-   <div class="hidden md:flex items-center space-x-6 text-gray-700">
-    <a href="#" class="flex items-center hover:text-fresh-green text-lg transition-colors"><i class="fas fa-user-circle text-3xl mr-1"></i> My Account</a>
-    <a href="#" class="relative hover:text-fresh-green transition-colors"><i class="fas fa-shopping-cart text-3xl"></i>
-     <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
-    </a>
-   </div>
+            <div class="hidden md:flex items-center space-x-6 text-gray-700">
+                <a href="#" class="flex items-center hover:text-fresh-green text-lg transition-colors"><i class="fas fa-user-circle text-3xl mr-1"></i> My Account</a>
+                <a href="#" class="relative hover:text-fresh-green transition-colors"><i class="fas fa-shopping-cart text-3xl"></i>
+                    <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </a>
+            </div>
 
-   <div class="md:hidden">
-    <button id="mobile-menu-trigger" class="text-gray-700 hover:text-fresh-green focus:outline-none">
-     <i class="fas fa-bars text-2xl"></i>
-    </button>
-   </div>
-  </div>
- </header>
-<nav id="main-nav" class="fixed left-0 right-0 z-40 bg-white shadow-md">
- <div class="hidden container mx-auto px-4 py-2 md:flex justify-between items-center text-base font-semibold">
-  <div class="flex items-center gap-x-4">
-   <div class="relative dropdown">
-    <button class="bg-black text-white py-3 px-4 rounded hover:bg-red-500 transition duration-300 focus:outline-none flex items-center whitespace-nowrap">
-     <i class="fas fa-th-list mr-2"></i>Categories <i class="fas fa-chevron-down ml-2 text-xs"></i>
-    </button>
-    <div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-b-md py-2 w-48 mt-1 z-50 border-t-2 border-red-500">
-     <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Web Design</a>
-     <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Graphic Design</a>
-    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Video Editing Course</a>
-     <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">All Courses</a>
-    </div>
-   </div>
-   <div class="flex items-center space-x-2 text-gray-700 text-lg">
-    <a href="#about" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">About us</a>
-    <a href="#products" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Our Popular Courses</a>
-    <a href="#gallery" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Our Student's Projects</a>
-<a href="#video-gallery" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Video Tutorials & Highlights</a>
-        <a href="#testimonials" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">What Our Students Say</a>
-        <a href="#contact" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Get In Touch</a>
+            <div class="md:hidden">
+                <button id="mobile-menu-trigger" class="text-gray-700 hover:text-fresh-green focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
     
-   </div>
-  </div>
-  <div>
-   <a href="#" class="bg-red-500 text-white py-3 px-4 rounded hover:bg-black transition duration-300 whitespace-nowrap">My Learning</a>
-  </div>
- </div>
-</nav>
+    <nav id="main-nav" class="fixed left-0 right-0 z-40 bg-white shadow-md">
+        <div class="hidden container mx-auto px-4 py-2 md:flex justify-between items-center text-base font-semibold">
+            <div class="flex items-center gap-x-4">
+                <div class="relative dropdown">
+                    <button class="bg-black text-white py-3 px-4 rounded hover:bg-red-500 transition duration-300 focus:outline-none flex items-center whitespace-nowrap">
+                        <i class="fas fa-th-list mr-2"></i>Categories <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                    </button>
+                    <div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-b-md py-2 w-48 mt-1 z-50 border-t-2 border-red-500">
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Web Design</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Graphic Design</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Video Editing Course</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">All Courses</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2 text-gray-700 text-lg">
+                    <a href="#about" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">About us</a>
+                    <a href="#products" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Our Popular Courses</a>
+                    <a href="#gallery" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Our Student's Projects</a>
+                    <a href="#video-gallery" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Video Tutorials & Highlights</a>
+                    <a href="#testimonials" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">What Our Students Say</a>
+                    <a href="#contact" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Get In Touch</a>
+                </div>
+            </div>
+            <div>
+                <a href="#" class="bg-red-500 text-white py-3 px-4 rounded hover:bg-black transition duration-300 whitespace-nowrap">My Learning</a>
+            </div>
+        </div>
+    </nav>
 
-<div id="mobile-menu" class="hidden md:hidden fixed z-30 w-full bg-white shadow-lg">
- <div class="pt-4 pb-3 px-4 space-y-2">
-  <div>
-   <button id="mobile-category-trigger" class="w-full flex justify-between items-center py-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded px-2">
-    <span>Categories</span>
-    <i class="fas fa-chevron-down transition-transform duration-300"></i>
-   </button>
-
-   <div id="mobile-category-submenu" class="hidden pl-4 mt-2 space-y-2 border-l-2 border-red-500">
-    <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Web Design</a>
-    <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Graphic Design</a>
-    <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Video Editing</a>
-
-    <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">All Courses</a>
-   </div>
-
-  </div>
-  <a href="#" class="block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded">All Courses</a>
-  <a href="#" class="block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded">My Learning</a>
-  <hr class="my-2">
-  <a href="#" class="flex items-center block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded">
-   <i class="fas fa-user-circle w-7 text-center mr-3 text-gray-500"></i>
-   <span>Account</span>
-  </a>
-  <a href="#" class="flex items-center block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded">
-   <i class="fas fa-shopping-cart w-7 text-center mr-3 text-gray-500"></i>
-   <span>Cart</span>
-  </a>
- </div>
-</div>
+    <div id="mobile-menu" class="hidden md:hidden fixed z-30 w-full bg-white shadow-lg">
+        <div class="pt-4 pb-3 px-4 space-y-2">
+            <div>
+                <button id="mobile-category-trigger" class="w-full flex justify-between items-center py-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded px-2">
+                    <span>Categories</span>
+                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div id="mobile-category-submenu" class="hidden pl-4 mt-2 space-y-2 border-l-2 border-red-500">
+                    <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Web Design</a>
+                    <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Graphic Design</a>
+                    <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">Video Editing</a>
+                    <a href="#" class="px-3 py-1 rounded-md transition duration-300 whitespace-nowrap hover:bg-gray-100">All Courses</a>
+                </div>
+            </div>
+            <a href="#" class="block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded">All Courses</a>
+            <a href="#" class="block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded">My Learning</a>
+            <hr class="my-2">
+            <a href="#" class="flex items-center block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded">
+                <i class="fas fa-user-circle w-7 text-center mr-3 text-gray-500"></i>
+                <span>Account</span>
+            </a>
+            <a href="#" class="flex items-center block py-2 px-2 text-lg font-semibold text-gray-700 hover:bg-gray-100 rounded">
+                <i class="fas fa-shopping-cart w-7 text-center mr-3 text-gray-500"></i>
+                <span>Cart</span>
+            </a>
+        </div>
+    </div>
 
     <div id="hero-banner-slider" class="swiper myHeroSwiper">
-    <div class="swiper-wrapper">
-
-        <div class="swiper-slide">
-            <div class="hero-image mobile-banner" style="background-image: url('1.jpg');"></div>
-            <div class="hero-image desktop-banner" style="background-image: url('1234.png');"></div>
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="hero-image mobile-banner" style="background-image: url('1.jpg');"></div>
+                <div class="hero-image desktop-banner" style="background-image: url('1234.png');"></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="hero-image mobile-banner" style="background-image: url('hi3.jpg');"></div>
+                <div class="hero-image desktop-banner" style="background-image: url('12.png');"></div>
+            </div>
         </div>
-
-       
-
-        <div class="swiper-slide">
-            <div class="hero-image mobile-banner" style="background-image: url('hi3.jpg');"></div>
-            <div class="hero-image desktop-banner" style="background-image: url('12.png');"></div>
-        </div>
-
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
     </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-</div>
 
-        <section class="mt-5">
-            <div class="swiper category-slider">
-                <div class="swiper-wrapper pb-5">
-                    
-               <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/qYC0GSwc/L1-1.png" alt="Design" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Adobe Premiere Pro</p></a></div>
-<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/SDPBbTqp/L1-2.png" alt="Business" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Adobe Photoshop</p></a></div>
-<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/rh0vRjT/L1-3.png" alt="Marketing" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Adobe Illustrator</p></a></div>
-<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/svfj1n9f/L1-4.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Adobe After Effects</p></a></div>
-<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/zVL8Mrcv/L1-5.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Filmora</p></a></div>
-<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/spb12hSC/L1-6.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Adobe Lightroom</p></a></div>
-<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/zhM7GbKn/L1-7.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Figma</p></a></div>
-<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/VYbN9FxT/L1-8.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Google Adsense</p></a></div>
-<div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/HTRRKJb1/L1-9.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">HTML and CSS</p></a></div>
+    <section class="mt-5">
+        <div class="swiper category-slider">
+            <div class="swiper-wrapper pb-5">
+                <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/qYC0GSwc/L1-1.png" alt="Design" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Adobe Premiere Pro</p></a></div>
+                <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/SDPBbTqp/L1-2.png" alt="Business" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Adobe Photoshop</p></a></div>
+                <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/rh0vRjT/L1-3.png" alt="Marketing" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Adobe Illustrator</p></a></div>
+                <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/svfj1n9f/L1-4.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Adobe After Effects</p></a></div>
+                <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/zVL8Mrcv/L1-5.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Filmora</p></a></div>
+                <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/spb12hSC/L1-6.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Adobe Lightroom</p></a></div>
+                <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/zhM7GbKn/L1-7.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Figma</p></a></div>
+                <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/VYbN9FxT/L1-8.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">Google Adsense</p></a></div>
+                <div class="swiper-slide text-center space-y-3"><a href="#" class="block group"><div class="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-white shadow-md p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow"><img src="https://i.ibb.co/HTRRKJb1/L1-9.png" alt="Language" class="w-24 h-24 md:w-32 md:h-32 object-contain"></div><p class="text-base md:text-lg font-semibold text-gray-700 mt-3">HTML and CSS</p></a></div>
             </div>
         </section>
 
-         <section class="mt-2">
+        <section class="mt-2">
             <div class="swiper ad-swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -355,182 +338,178 @@
                 <div class="swiper-pagination"></div>
             </div>
         </section>
+    </main>
 
-        </main>
-       
-        
-
-   
     <script src="navbar.js"></script>
 
-<section id="about" class="py-16 md:py-24 bg-white">
-    <div class="container mx-auto px-4 max-w-screen-3xl">
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 max-w-screen-3xl">
 
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
-                Empowering Your Learning Journey
-            </h2>
-            <p class="text-lg text-gray-600 mt-2">
-                Discover a new way to learn and grow your skills.
-            </p>
-        </div>
-
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div class="grid md:grid-cols-2 items-center">
-
-                <div class="h-full">
-                    <img src="ABOUT US COURSE.jpg" alt="A team collaborating on a project" class="w-full h-full object-cover">
-                </div>
-
-                <div class="p-8 md:p-12">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">
-                        Welcome to Our Learning Community
-                    </h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        A highly qualified lecturer with over 10 years of proven local and international experience has established the Walt Dot Design Academy – Online Education Institute. With a strong reputation for professional excellence, innovation, and trust, he now brings his knowledge and expertise to guide you in your learning journey.
-
-Every course offered at the academy is carefully designed and conducted under his direct supervision, ensuring the highest quality of education. Students can rely on the credibility, professionalism, and trust he has earned throughout his career.
-
-The Walt Dot Design Academy is more than just an online platform – it is a trusted hub for skill development, creative growth, and career success, built on a foundation of dedication, experience, and global recognition.
-                    </p>
-
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <i class="fas fa-chalkboard-teacher text-xl text-red-500 bg-red-100 p-3 rounded-full"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-gray-700">Expert-Led Courses</h4>
-                                <p class="text-gray-500">Learn from industry professionals with real-world experience.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <i class="fas fa-clock text-xl text-red-500 bg-red-100 p-3 rounded-full"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-gray-700">Flexible Learning</h4>
-                                <p class="text-gray-500">Learn at your own pace, anytime, anywhere, with lifetime access.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <i class="fas fa-users text-xl text-red-500 bg-red-100 p-3 rounded-full"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-gray-700">Supportive Community</h4>
-                                <p class="text-gray-500">Join a vibrant network of fellow learners and mentors.</p>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <a href="#products" class="inline-block bg-black text-white font-bold py-3 px-8 rounded-full transition-transform duration-300 hover:scale-105 hover:bg-red-500 shadow-lg">
-                        Explore Our Courses
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="products" class="pt-0 pb-16 md:pt-0 md:pb-20 bg-white">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Our Popular Courses</h2>
-            <p class="text-lg text-gray-600 mt-2">Start your learning journey with our top-rated courses.</p>
-        </div>
-
-        <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            </div>
-    </div>
-
-    <div id="course-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 hidden p-4">
-    <div class="bg-white rounded-xl shadow-2xl w-full md:max-w-3xl mx-auto transform transition-all duration-300 scale-95 overflow-hidden">
-        
-        <div class="grid md:grid-cols-2">
-
-            <div class="p-6 md:p-8">
-                <h2 id="modal-title" class="text-3xl font-bold text-gray-900 mb-4">Course Title</h2>
-                <div id="modal-description" class="text-gray-600 leading-relaxed max-h-80 overflow-y-auto pr-4">
-                    <p>Course description will appear here...</p>
-                </div>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
+                    Empowering Your Learning Journey
+                </h2>
+                <p class="text-lg text-gray-600 mt-2">
+                    Discover a new way to learn and grow your skills.
+                </p>
             </div>
 
-            <div class="bg-gray-50 p-6 md:p-8 border-t md:border-t-0 md:border-l border-gray-200">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-xl font-semibold text-gray-800">Enroll Now</h3>
-                    <button id="modal-close-btn" class="text-gray-400 hover:text-gray-800 text-3xl font-bold">&times;</button>
-                </div>
-                
-                <form id="enroll-form" class="space-y-4">
-                    <div>
-                        <label for="enroll-name" class="block text-sm font-medium text-gray-700">Your Full Name</label>
-                        <input type="text" id="enroll-name" class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500" required>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="grid md:grid-cols-2 items-center">
+
+                    <div class="h-full">
+                        <img src="ABOUT US COURSE.jpg" alt="A team collaborating on a project" class="w-full h-full object-cover">
                     </div>
-                    
-                    <div>
-                        <label for="enroll-slip" class="block text-sm font-medium text-gray-700">Upload Payment Slip</label>
-                        <input type="file" id="enroll-slip" accept="image/*" class="mt-1 w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200" required>
-                        <div class="mt-2 text-center">
-                            <img id="slip-preview" src="" class="max-h-32 mx-auto hidden rounded-md shadow-sm"/>
+
+                    <div class="p-8 md:p-12">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+                            Welcome to Our Learning Community
+                        </h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            A highly qualified lecturer with over 10 years of proven local and international experience has established the Walt Dot Design Academy – Online Education Institute. With a strong reputation for professional excellence, innovation, and trust, he now brings his knowledge and expertise to guide you in your learning journey.
+
+                            Every course offered at the academy is carefully designed and conducted under his direct supervision, ensuring the highest quality of education. Students can rely on the credibility, professionalism, and trust he has earned throughout his career.
+
+                            The Walt Dot Design Academy is more than just an online platform – it is a trusted hub for skill development, creative growth, and career success, built on a foundation of dedication, experience, and global recognition.
+                        </p>
+
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-chalkboard-teacher text-xl text-red-500 bg-red-100 p-3 rounded-full"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-bold text-gray-700">Expert-Led Courses</h4>
+                                    <p class="text-gray-500">Learn from industry professionals with real-world experience.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-clock text-xl text-red-500 bg-red-100 p-3 rounded-full"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-bold text-gray-700">Flexible Learning</h4>
+                                    <p class="text-gray-500">Learn at your own pace, anytime, anywhere, with lifetime access.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-users text-xl text-red-500 bg-red-100 p-3 rounded-full"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-bold text-gray-700">Supportive Community</h4>
+                                    <p class="text-gray-500">Join a vibrant network of fellow learners and mentors.</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <a href="#products" class="inline-block bg-black text-white font-bold py-3 px-8 rounded-full transition-transform duration-300 hover:scale-105 hover:bg-red-500 shadow-lg">
+                            Explore Our Courses
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="pt-0 pb-16 md:pt-0 md:pb-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Our Popular Courses</h2>
+                <p class="text-lg text-gray-600 mt-2">Start your learning journey with our top-rated courses.</p>
+            </div>
+
+            <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            </div>
+        </div>
+
+        <div id="course-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 hidden p-4">
+            <div class="bg-white rounded-xl shadow-2xl w-full md:max-w-3xl mx-auto transform transition-all duration-300 scale-95 overflow-hidden">
+                
+                <div class="grid md:grid-cols-2">
+
+                    <div class="p-6 md:p-8">
+                        <h2 id="modal-title" class="text-3xl font-bold text-gray-900 mb-4">Course Title</h2>
+                        <div id="modal-description" class="text-gray-600 leading-relaxed max-h-80 overflow-y-auto pr-4">
+                            <p>Course description will appear here...</p>
                         </div>
                     </div>
 
-                    <button type="submit" id="enroll-now-btn" class="w-full bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover:bg-black disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center">
-                        <i class="fab fa-whatsapp mr-2"></i>
-                        <span>Enroll via WhatsApp</span>
-                    </button>
-                    <p id="enroll-status" class="text-center text-sm text-gray-600 h-4"></p>
-                </form>
+                    <div class="bg-gray-50 p-6 md:p-8 border-t md:border-t-0 md:border-l border-gray-200">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800">Enroll Now</h3>
+                            <button id="modal-close-btn" class="text-gray-400 hover:text-gray-800 text-3xl font-bold">&times;</button>
+                        </div>
+                        
+                        <form id="enroll-form" class="space-y-4">
+                            <div>
+                                <label for="enroll-name" class="block text-sm font-medium text-gray-700">Your Full Name</label>
+                                <input type="text" id="enroll-name" class="mt-1 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500" required>
+                            </div>
+                            
+                            <div>
+                                <label for="enroll-slip" class="block text-sm font-medium text-gray-700">Upload Payment Slip</label>
+                                <input type="file" id="enroll-slip" accept="image/*" class="mt-1 w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200" required>
+                                <div class="mt-2 text-center">
+                                    <img id="slip-preview" src="" class="max-h-32 mx-auto hidden rounded-md shadow-sm"/>
+                                </div>
+                            </div>
+
+                            <button type="submit" id="enroll-now-btn" class="w-full bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover:bg-black disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center">
+                                <i class="fab fa-whatsapp mr-2"></i>
+                                <span>Enroll via WhatsApp</span>
+                            </button>
+                            <p id="enroll-status" class="text-center text-sm text-gray-600 h-4"></p>
+                        </form>
+                    </div>
+
+                </div>
             </div>
-
         </div>
-    </div>
-</div>
-</section>
+    </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const statsSection = document.getElementById('stats-counter');
-    const numbers = document.querySelectorAll('.stat-number');
-    let hasAnimated = false; // To make sure animation runs only once
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const statsSection = document.getElementById('stats-counter');
+        const numbers = document.querySelectorAll('.stat-number');
+        let hasAnimated = false; // To make sure animation runs only once
 
-    const startCounter = (element) => {
-        const goal = parseInt(element.getAttribute('data-goal'));
-        let count = 0;
-        const duration = 2000; // Animation duration in milliseconds (2 seconds)
-        const increment = goal / (duration / 15); // Calculate step
+        const startCounter = (element) => {
+            const goal = parseInt(element.getAttribute('data-goal'));
+            let count = 0;
+            const duration = 2000; // Animation duration in milliseconds (2 seconds)
+            const increment = goal / (duration / 15); // Calculate step
 
-        const timer = setInterval(() => {
-            count += increment;
-            if (count >= goal) {
-                clearInterval(timer);
-                // Add a '+' for larger numbers and format with commas
-                element.textContent = goal.toLocaleString() + (goal > 100 ? '+' : '');
-            } else {
-                element.textContent = Math.ceil(count).toLocaleString();
-            }
-        }, 15); // Update every 15ms for smooth animation
-    };
+            const timer = setInterval(() => {
+                count += increment;
+                if (count >= goal) {
+                    clearInterval(timer);
+                    // Add a '+' for larger numbers and format with commas
+                    element.textContent = goal.toLocaleString() + (goal > 100 ? '+' : '');
+                } else {
+                    element.textContent = Math.ceil(count).toLocaleString();
+                }
+            }, 15); // Update every 15ms for smooth animation
+        };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            // If the stats section is in view and hasn't animated yet
-            if (entry.isIntersecting && !hasAnimated) {
-                hasAnimated = true; // Mark as animated
-                numbers.forEach(number => startCounter(number));
-                observer.unobserve(statsSection); // Stop observing after animation
-            }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // If the stats section is in view and hasn't animated yet
+                if (entry.isIntersecting && !hasAnimated) {
+                    hasAnimated = true; // Mark as animated
+                    numbers.forEach(number => startCounter(number));
+                    observer.unobserve(statsSection); // Stop observing after animation
+                }
+            });
+        }, {
+            threshold: 0.5 // Trigger when 50% of the section is visible
         });
-    }, {
-        threshold: 0.5 // Trigger when 50% of the section is visible
-    });
 
-    if (statsSection) {
-        observer.observe(statsSection);
-    }
-});
-</script>
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+    });
+    </script>
 
     <div id="order-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
         <div id="modal-overlay" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300"></div>
@@ -546,24 +525,24 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <div id="modal-main-image-container" class="h-64 bg-gray-100 rounded-lg flex items-center justify-center mb-3 p-2">
-                        </div>
+                    </div>
                     <div id="modal-thumbnails" class="flex justify-center space-x-2">
-                        </div>
+                    </div>
                 </div>
 
                 <div>
                     <div class="mb-4">
-                         <h3 id="modal-product-name" class="text-2xl font-semibold text-gray-800">Course Name</h3>
+                        <h3 id="modal-product-name" class="text-2xl font-semibold text-gray-800">Course Name</h3>
                         <p id="modal-product-price" class="text-xl text-fresh-green font-bold mt-1">Price</p>
                     </div>
                     
                     <div class="mb-6">
                         <label for="quantity" class="block text-sm font-medium text-gray-700 mb-2">Quantity (Seats)</label>
                         <input type="number" id="quantity" name="quantity" value="1" min="1" 
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-fresh-green focus:border-transparent transition duration-300">
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-fresh-green focus:border-transparent transition duration-300">
                     </div>
     
-                   <button id="buy-now-btn" 
+                    <button id="buy-now-btn" 
                             class="w-full bg-fresh-green hover:bg-dark-green text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg">
                         <i class="fab fa-whatsapp mr-2"></i>Enroll Now via WhatsApp
                     </button>
@@ -572,555 +551,548 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </div>
 
- <section id="gallery" class="py-16 md:py-24 bg-gray-50">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-             <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Our Student's Projects</h2>
-            <p class="text-lg text-gray-600 mt-2">Start your learning journey with our top-rated courses.</p>
-        </div>
-        <div class="swiper gallery-swiper relative">
-            <div class="swiper-wrapper">
+    <section id="gallery" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Our Student's Projects</h2>
+                <p class="text-lg text-gray-600 mt-2">Start your learning journey with our top-rated courses.</p>
+            </div>
+            <div class="swiper gallery-swiper relative">
+                <div class="swiper-wrapper">
                 </div>
-            <div class="swiper-pagination mt-8 relative"></div>
-        </div>
-        
-    </div>
-
-   
-
-
-<div id="load-more-container" class="text-center my-12">
-    <button id="load-more-btn" class="bg-black text-white font-bold py-3 px-8 rounded-full transition duration-300 hover:bg-dark-green disabled:bg-gray-400 disabled:cursor-not-allowed">
-        Load More Projects
-    </button>
-</div>
-</section>
-
-<section id="video-gallery" class="py-16 md:py-24 bg-white">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Video Tutorials & Highlights</h2>
-            <p class="text-lg text-gray-600 mt-2">See our courses in action and learn from our latest tutorials.</p>
+                <div class="swiper-pagination mt-8 relative"></div>
+            </div>
         </div>
 
-        <div class="swiper video-swiper relative pb-16">
-            <div id="video-swiper-wrapper" class="swiper-wrapper">
+        <div id="load-more-container" class="text-center my-12">
+            <button id="load-more-btn" class="bg-black text-white font-bold py-3 px-8 rounded-full transition duration-300 hover:bg-dark-green disabled:bg-gray-400 disabled:cursor-not-allowed">
+                Load More Projects
+            </button>
+        </div>
+    </section>
+
+    <section id="video-gallery" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Video Tutorials & Highlights</h2>
+                <p class="text-lg text-gray-600 mt-2">See our courses in action and learn from our latest tutorials.</p>
+            </div>
+
+            <div class="swiper video-swiper relative pb-16">
+                <div id="video-swiper-wrapper" class="swiper-wrapper">
                 </div>
-            
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-next text-red-500"></div>
-            <div class="swiper-button-prev text-red-500"></div>
+                
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next text-red-500"></div>
+                <div class="swiper-button-prev text-red-500"></div>
+            </div>
         </div>
-    </div>
-</section>
-        
-    </div>
-</section>
+    </section>
 
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-database-compat.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-database-compat.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="main.js" defer></script>
+    <script src="gallery.js" defer></script>
 
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="main.js" defer></script>
-<script src="gallery.js" defer></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const imagesRef = database.ref('images');
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        const gallerySwiperContainer = document.querySelector('.gallery-swiper');
 
-<script>
+        if (!gallerySwiperContainer) return; // Exit if there's no gallery on the page
 
+        const PAGE_SIZE = 12;
+        let lastLoadedKey = null;
+        let allImagesLoaded = false;
 
-document.addEventListener('DOMContentLoaded', function () {
-    const imagesRef = database.ref('images');
-    const loadMoreBtn = document.getElementById('load-more-btn');
-    const gallerySwiperContainer = document.querySelector('.gallery-swiper');
-
-    if (!gallerySwiperContainer) return; // Exit if there's no gallery on the page
-
-    const PAGE_SIZE = 12;
-    let lastLoadedKey = null;
-    let allImagesLoaded = false;
-
-    const gallerySwiper = new Swiper(gallerySwiperContainer, {
-        loop: false,
-        autoHeight: true,
-        spaceBetween: 30,
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
-        },
-        pagination: { el: '.swiper-pagination', clickable: true },
-        
-        // --- NAVIGATION REMOVED FROM HERE ---
-        // navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-        
-        breakpoints: {
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 4 }
-        }
-    });
-
-    function loadImages(startKey = null) {
-        let query = imagesRef.orderByKey();
-        if (startKey) {
-            query = query.endBefore(startKey);
-        }
-        
-        query.limitToLast(PAGE_SIZE).once('value', snapshot => {
-            if (!snapshot.exists()) {
-                if(loadMoreBtn) {
-                    loadMoreBtn.textContent = 'No More Projects';
-                    loadMoreBtn.disabled = true;
-                }
-                allImagesLoaded = true;
-                return;
-            }
-
-            let images = [];
-            snapshot.forEach(child => { images.push({ key: child.key, ...child.val() }); });
-            images.reverse();
+        const gallerySwiper = new Swiper(gallerySwiperContainer, {
+            loop: false,
+            autoHeight: true,
+            spaceBetween: 30,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: { el: '.swiper-pagination', clickable: true },
             
-            lastLoadedKey = images[images.length - 1].key;
+            // --- NAVIGATION REMOVED FROM HERE ---
+            // navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
             
-            const newSlides = images.map(image => `
-                <div class="swiper-slide" data-key="${image.key}">
-                    <a href="${image.url}" data-fancybox="gallery" data-caption="${image.caption || ''}">
-                        <img src="${image.url}" alt="${image.caption || 'Project'}" loading="lazy" class="rounded-lg shadow-lg w-full h-auto">
-                    </a>
-                </div>
-            `);
-
-            gallerySwiper.appendSlide(newSlides);
-            if(loadMoreBtn) {
-                loadMoreBtn.textContent = 'Load More Projects';
-                loadMoreBtn.disabled = false;
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 4 }
             }
         });
-    }
 
-    if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', () => {
-            if (!allImagesLoaded) {
-                loadMoreBtn.textContent = 'Loading...';
-                loadMoreBtn.disabled = true;
-                loadImages(lastLoadedKey);
+        function loadImages(startKey = null) {
+            let query = imagesRef.orderByKey();
+            if (startKey) {
+                query = query.endBefore(startKey);
             }
-        });
-    }
-    
-    imagesRef.on('child_removed', snapshot => {
-        const imageKey = snapshot.key;
-        const slideToRemove = document.querySelector(`.swiper-slide[data-key="${imageKey}"]`);
-        if (slideToRemove) {
-            const slideIndex = parseInt(slideToRemove.dataset.swiperSlideIndex, 10);
-            if (!isNaN(slideIndex)) {
-                gallerySwiper.removeSlide(slideIndex);
-            }
-        }
-    });
-
-    loadImages();
-});
-
-// video.js
-
-</script>
-
-<section id="testimonials" class="py-16 md:py-24 bg-gray-50">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
-                What Our Students Say
-            </h2>
-            <p class="text-lg text-gray-600 mt-2 max-w-3xl mx-auto">
-                Genuine experiences and honest feedback shared by our vibrant learning community.
-            </p>
-        </div>
-
-        <div class="swiper testimonials-swiper relative">
-            <div id="testimonials-swiper-wrapper" class="swiper-wrapper">
-                </div>
             
-            <div class="swiper-pagination !relative !bottom-0 pt-8"></div>
-        </div>
-
-        <div class="text-center mt-8">
-            <a href="reviews.html" 
-               class="inline-block bg-black text-white font-bold py-3 px-8 rounded-full transition duration-300 hover:bg-red-500 hover:scale-105 transform">
-                Add Your Review
-            </a>
-        </div>
-    </div>
-</section>
-
-
-<section id="partners" class="py-16 md:py-20 bg-gray-50">
-    <div class="container mx-auto px-4">
-        
-        <div class="text-center mb-12">
-            
-            <p class="text-lg text-gray-600 mt-2">Proudly partnered with and trusted by some of the world’s most respected, innovative, and industry-leading companies across diverse sectors.</p>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-12 gap-y-10 justify-items-center items-center">
-            
-            <a href="#" target="_blank" class="flex justify-center items-center">
-                <img src="tharindu production logos-01.png" 
-                     alt="Tharindu Production Logo" 
-                     class="max-h-100 w-auto transition-all duration-300">
-            </a>
-
-            <a href="#" target="_blank" class="flex justify-center items-center">
-                <img src="tharindu g¾phic logos-01.png" 
-                     alt="Tharindu Graphic Logo" 
-                     class="max-h-100  w-auto transition-all duration-300">
-            </a>
-
-            <a href="#" target="_blank" class="flex justify-center items-center">
-                <img src="ns logo2 (1).png" 
-                     alt="NS Logo" 
-                     class="max-h-15 w-auto transition-all duration-300">
-            </a>
-    
-            <a href="#" target="_blank" class="flex justify-center items-center">
-                <img src="logo edit walata api-01.png" 
-                     alt="Logo Edit Walata Api Logo" 
-                     class="max-h-25 w-auto transition-all duration-300">
-            </a>
-
-            <a href="#" target="_blank" class="flex justify-center items-center">
-                <img src="art-01.png" 
-                     alt="Art Logo" 
-                     class="max-h-30 w-auto transition-all duration-300">
-            </a>
-            
-        </div>
-    </div>
-</section>
-
-
-<script>
-   
-document.addEventListener('DOMContentLoaded', function() {
-    const database = firebase.database();
-    const reviewsRef = database.ref('reviews');
-    const testimonialsWrapper = document.getElementById('testimonials-swiper-wrapper');
-
-    if (testimonialsWrapper) {
-
-        function escapeHTML(str) {
-            if (typeof str !== 'string') return '';
-            return str.replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        }
-
-        let swiper;
-        let isSwiperInitialized = false;
-
-        // This CSS rule will align all cards to the top of the row
-        testimonialsWrapper.style.alignItems = 'flex-start';
-
-        reviewsRef.orderByChild('timestamp').limitToLast(10).on('child_added', function(snapshot) {
-            const reviewData = snapshot.val();
-            if (!reviewData) return;
-
-            const safeName = escapeHTML(reviewData.name);
-            const safeComment = escapeHTML(reviewData.comment);
-            const reviewerImage = reviewData.imageUrl || 'https://i.ibb.co/68XqnT3/default-avatar.png';
-
-            let starsHTML = '';
-            for (let i = 1; i <= 5; i++) {
-                starsHTML += `<i class="fas fa-star ${i <= reviewData.rating ? 'text-yellow-400' : 'text-gray-300'}"></i>`;
-            }
-
-            const slide = document.createElement('div');
-            // REMOVED h-auto class
-            slide.className = 'swiper-slide pb-4';
-
-            // Card design WITHOUT 'h-full' and 'flex-grow' to allow variable height
-            slide.innerHTML = `
-                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col border border-slate-200/80 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                    <header class="flex items-center gap-4 mb-4">
-                        <img src="${reviewerImage}" alt="Review from ${safeName}" class="w-14 h-14 rounded-full object-cover shadow-sm">
-                        <div class="flex-grow">
-                            <h4 class="font-bold text-slate-800">${safeName}</h4>
-                            <div class="text-yellow-400 text-lg">
-                                ${starsHTML}
-                            </div>
-                        </div>
-                    </header>
-                    <blockquote class="text-slate-600 leading-relaxed text-left border-l-4 border-slate-200 pl-4 italic">
-                        <p>${safeComment}</p>
-                    </blockquote>
-                </div>
-            `;
-            
-            testimonialsWrapper.prepend(slide);
-
-            if (!isSwiperInitialized) {
-                swiper = new Swiper('.testimonials-swiper', {
-                    loop: true,
-                    spaceBetween: 30,
-                    // REMOVED autoHeight: true
-                    autoplay: {
-                        delay: 5000,
-                        disableOnInteraction: false,
-                    },
-                    pagination: {
-                        el: '.testimonials-swiper .swiper-pagination',
-                        clickable: true,
-                    },
-                    breakpoints: {
-                        640: { slidesPerView: 1 },
-                        768: { slidesPerView: 2 },
-                        1024: { slidesPerView: 3 }
+            query.limitToLast(PAGE_SIZE).once('value', snapshot => {
+                if (!snapshot.exists()) {
+                    if(loadMoreBtn) {
+                        loadMoreBtn.textContent = 'No More Projects';
+                        loadMoreBtn.disabled = true;
                     }
-                });
-                isSwiperInitialized = true;
-            } else {
-                swiper.update();
+                    allImagesLoaded = true;
+                    return;
+                }
+
+                let images = [];
+                snapshot.forEach(child => { images.push({ key: child.key, ...child.val() }); });
+                images.reverse();
+                
+                lastLoadedKey = images[images.length - 1].key;
+                
+                const newSlides = images.map(image => `
+                    <div class="swiper-slide" data-key="${image.key}">
+                        <a href="${image.url}" data-fancybox="gallery" data-caption="${image.caption || ''}">
+                            <img src="${image.url}" alt="${image.caption || 'Project'}" loading="lazy" class="rounded-lg shadow-lg w-full h-auto">
+                        </a>
+                    </div>
+                `);
+
+                gallerySwiper.appendSlide(newSlides);
+                if(loadMoreBtn) {
+                    loadMoreBtn.textContent = 'Load More Projects';
+                    loadMoreBtn.disabled = false;
+                }
+            });
+        }
+
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', () => {
+                if (!allImagesLoaded) {
+                    loadMoreBtn.textContent = 'Loading...';
+                    loadMoreBtn.disabled = true;
+                    loadImages(lastLoadedKey);
+                }
+            });
+        }
+        
+        imagesRef.on('child_removed', snapshot => {
+            const imageKey = snapshot.key;
+            const slideToRemove = document.querySelector(`.swiper-slide[data-key="${imageKey}"]`);
+            if (slideToRemove) {
+                const slideIndex = parseInt(slideToRemove.dataset.swiperSlideIndex, 10);
+                if (!isNaN(slideIndex)) {
+                    gallerySwiper.removeSlide(slideIndex);
+                }
             }
         });
-    }
-});
-</script>
-</script>
-<section id="contact" class="py-16 md:py-24 bg-white overflow-hidden">
-    <div class="container mx-auto px-4 max-w-screen-xl">
 
-        <div class="text-center mb-12 md:mb-16 scroll-animate">
-            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-black to-black bg-clip-text text-transparent pb-2">
-                Get in Touch
-            </h2>
-            <p class="text-lg text-gray-600 mt-2 max-w-2xl mx-auto">
-                Feel free to reach out to us for your course needs, inquiries, or any support. We're here to help.
-            </p>
+        loadImages();
+    });
+    </script>
+
+    <section id="testimonials" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
+                    What Our Students Say
+                </h2>
+                <p class="text-lg text-gray-600 mt-2 max-w-3xl mx-auto">
+                    Genuine experiences and honest feedback shared by our vibrant learning community.
+                </p>
+            </div>
+
+            <div class="swiper testimonials-swiper relative">
+                <div id="testimonials-swiper-wrapper" class="swiper-wrapper">
+                </div>
+                
+                <div class="swiper-pagination !relative !bottom-0 pt-8"></div>
+            </div>
+
+            <div class="text-center mt-8">
+                <a href="reviews.html" 
+                    class="inline-block bg-black text-white font-bold py-3 px-8 rounded-full transition duration-300 hover:bg-red-500 hover:scale-105 transform">
+                    Add Your Review
+                </a>
+            </div>
         </div>
+    </section>
 
-        <div class="grid md:grid-cols-2 gap-12 items-start">
+    <section id="partners" class="py-16 md:py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
             
-            <div class="space-y-6">
+            <div class="text-center mb-12">
                 
-                <div class="animate-bob flex items-start p-6 bg-white rounded-xl shadow-sm border border-gray-200/80 hover:shadow-lg hover:border-red-500/50 hover:-translate-y-1 transition-all duration-300 scroll-animate" style="transition-delay: 200ms;">
-                    <i class="fas fa-phone-alt text-3xl text-red-500 flex-shrink-0"></i>
-                    <div class="ml-5">
-                        <h4 class="font-bold text-gray-800 text-xl mb-1">Phone</h4>
-                        <p class="text-gray-600 hover:text-red-500 transition-colors"><a href="tel:+94779105219">+94 78 932 6760</a> (Support)</p>
-                    </div>
-                </div>
-                
-                <div class="animate-bob flex items-start p-6 bg-white rounded-xl shadow-sm border border-gray-200/80 hover:shadow-lg hover:border-red-500/50 hover:-translate-y-1 transition-all duration-300 scroll-animate" style="transition-delay: 300ms; animation-delay: -1.5s;">
-                    <i class="fas fa-envelope text-3xl text-red-500 flex-shrink-0"></i>
-                    <div class="ml-5">
-                        <h4 class="font-bold text-gray-800 text-xl mb-1">Email</h4>
-                        <p class="text-gray-600 hover:text-red-500 transition-colors"><a href="mailto:info@findurcourse.lk">waltdotdesignacademy@gmail.com</a></p>
-                    </div>
-                </div>
+                <p class="text-lg text-gray-600 mt-2">Proudly partnered with and trusted by some of the world’s most respected, innovative, and industry-leading companies across diverse sectors.</p>
             </div>
 
-            <div class="bg-white rounded-xl shadow-lg border border-gray-200/60 p-8 md:p-10 scroll-animate" style="transition-delay: 150ms;">
-                <form id="contact-form" action="#" method="POST" class="space-y-6">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
-                        <input type="text" name="name" id="name" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-300" placeholder="e.g., John Doe">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-12 gap-y-10 justify-items-center items-center">
+                
+                <a href="#" target="_blank" class="flex justify-center items-center">
+                    <img src="tharindu production logos-01.png" 
+                            alt="Tharindu Production Logo" 
+                            class="max-h-100 w-auto transition-all duration-300">
+                </a>
+
+                <a href="#" target="_blank" class="flex justify-center items-center">
+                    <img src="tharindu g¾phic logos-01.png" 
+                            alt="Tharindu Graphic Logo" 
+                            class="max-h-100  w-auto transition-all duration-300">
+                </a>
+
+                <a href="#" target="_blank" class="flex justify-center items-center">
+                    <img src="ns logo2 (1).png" 
+                            alt="NS Logo" 
+                            class="max-h-15 w-auto transition-all duration-300">
+                </a>
+        
+                <a href="#" target="_blank" class="flex justify-center items-center">
+                    <img src="logo edit walata api-01.png" 
+                            alt="Logo Edit Walata Api Logo" 
+                            class="max-h-25 w-auto transition-all duration-300">
+                </a>
+
+                <a href="#" target="_blank" class="flex justify-center items-center">
+                    <img src="art-01.png" 
+                            alt="Art Logo" 
+                            class="max-h-30 w-auto transition-all duration-300">
+                </a>
+                
+            </div>
+        </div>
+    </section>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const database = firebase.database();
+        const reviewsRef = database.ref('reviews');
+        const testimonialsWrapper = document.getElementById('testimonials-swiper-wrapper');
+
+        if (testimonialsWrapper) {
+
+            function escapeHTML(str) {
+                if (typeof str !== 'string') return '';
+                return str.replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            }
+
+            let swiper;
+            let isSwiperInitialized = false;
+
+            // This CSS rule will align all cards to the top of the row
+            testimonialsWrapper.style.alignItems = 'flex-start';
+
+            reviewsRef.orderByChild('timestamp').limitToLast(10).on('child_added', function(snapshot) {
+                const reviewData = snapshot.val();
+                if (!reviewData) return;
+
+                const safeName = escapeHTML(reviewData.name);
+                const safeComment = escapeHTML(reviewData.comment);
+                const reviewerImage = reviewData.imageUrl || 'https://i.ibb.co/68XqnT3/default-avatar.png';
+
+                let starsHTML = '';
+                for (let i = 1; i <= 5; i++) {
+                    starsHTML += `<i class="fas fa-star ${i <= reviewData.rating ? 'text-yellow-400' : 'text-gray-300'}"></i>`;
+                }
+
+                const slide = document.createElement('div');
+                // REMOVED h-auto class
+                slide.className = 'swiper-slide pb-4';
+
+                // Card design WITHOUT 'h-full' and 'flex-grow' to allow variable height
+                slide.innerHTML = `
+                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col border border-slate-200/80 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        <header class="flex items-center gap-4 mb-4">
+                            <img src="${reviewerImage}" alt="Review from ${safeName}" class="w-14 h-14 rounded-full object-cover shadow-sm">
+                            <div class="flex-grow">
+                                <h4 class="font-bold text-slate-800">${safeName}</h4>
+                                <div class="text-yellow-400 text-lg">
+                                    ${starsHTML}
+                                </div>
+                            </div>
+                        </header>
+                        <blockquote class="text-slate-600 leading-relaxed text-left border-l-4 border-slate-200 pl-4 italic">
+                            <p>${safeComment}</p>
+                        </blockquote>
                     </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Your Email Address</label>
-                        <input type="email" name="email" id="email" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-300" placeholder="e.g., john@example.com">
-                    </div>
-                    <div>
-                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                        <input type="text" name="subject" id="subject" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-300" placeholder="What is your inquiry about?">
-                    </div>
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                        <textarea name="message" id="message" rows="5" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-300" placeholder="Type your message here..."></textarea>
-                    </div>
-                    <div>
-                        <button type="submit" class="w-full flex items-center justify-center bg-black text-white font-bold py-4 px-8 rounded-full transition-all duration-300 hover:bg-red-500 hover:shadow-lg hover:shadow-red-500/30 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                            <i class="fas fa-paper-plane mr-3"></i>
-                            Send Message
-                        </button>
-                    </div>
-                </form>
+                `;
+                
+                testimonialsWrapper.prepend(slide);
+
+                if (!isSwiperInitialized) {
+                    swiper = new Swiper('.testimonials-swiper', {
+                        loop: true,
+                        spaceBetween: 30,
+                        // REMOVED autoHeight: true
+                        autoplay: {
+                            delay: 5000,
+                            disableOnInteraction: false,
+                        },
+                        pagination: {
+                            el: '.testimonials-swiper .swiper-pagination',
+                            clickable: true,
+                        },
+                        breakpoints: {
+                            640: { slidesPerView: 1 },
+                            768: { slidesPerView: 2 },
+                            1024: { slidesPerView: 3 }
+                        }
+                    });
+                    isSwiperInitialized = true;
+                } else {
+                    swiper.update();
+                }
+            });
+        }
+    });
+    </script>
+    
+    <section id="contact" class="py-16 md:py-24 bg-white overflow-hidden">
+        <div class="container mx-auto px-4 max-w-screen-xl">
+
+            <div class="text-center mb-12 md:mb-16 scroll-animate">
+                <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-black to-black bg-clip-text text-transparent pb-2">
+                    Get in Touch
+                </h2>
+                <p class="text-lg text-gray-600 mt-2 max-w-2xl mx-auto">
+                    Feel free to reach out to us for your course needs, inquiries, or any support. We're here to help.
+                </p>
             </div>
 
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                
+                <div class="space-y-6">
+                    
+                    <div class="animate-bob flex items-start p-6 bg-white rounded-xl shadow-sm border border-gray-200/80 hover:shadow-lg hover:border-red-500/50 hover:-translate-y-1 transition-all duration-300 scroll-animate" style="transition-delay: 200ms;">
+                        <i class="fas fa-phone-alt text-3xl text-red-500 flex-shrink-0"></i>
+                        <div class="ml-5">
+                            <h4 class="font-bold text-gray-800 text-xl mb-1">Phone</h4>
+                            <p class="text-gray-600 hover:text-red-500 transition-colors"><a href="tel:+94779105219">+94 78 932 6760</a> (Support)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="animate-bob flex items-start p-6 bg-white rounded-xl shadow-sm border border-gray-200/80 hover:shadow-lg hover:border-red-500/50 hover:-translate-y-1 transition-all duration-300 scroll-animate" style="transition-delay: 300ms; animation-delay: -1.5s;">
+                        <i class="fas fa-envelope text-3xl text-red-500 flex-shrink-0"></i>
+                        <div class="ml-5">
+                            <h4 class="font-bold text-gray-800 text-xl mb-1">Email</h4>
+                            <p class="text-gray-600 hover:text-red-500 transition-colors"><a href="mailto:info@findurcourse.lk">waltdotdesignacademy@gmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg border border-gray-200/60 p-8 md:p-10 scroll-animate" style="transition-delay: 150ms;">
+                    <form id="contact-form" action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+                            <input type="text" name="name" id="name" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-300" placeholder="e.g., John Doe">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Your Email Address</label>
+                            <input type="email" name="email" id="email" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-300" placeholder="e.g., john@example.com">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                            <input type="text" name="subject" id="subject" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-300" placeholder="What is your inquiry about?">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea name="message" id="message" rows="5" required class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-300" placeholder="Type your message here..."></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full flex items-center justify-center bg-black text-white font-bold py-4 px-8 rounded-full transition-all duration-300 hover:bg-red-500 hover:shadow-lg hover:shadow-red-500/30 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                <i class="fas fa-paper-plane mr-3"></i>
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="floating-social-buttons">
+        <a href="https://www.facebook.com/profile.php?id=61559460683243" target="_blank" class="social-button facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/waltdot_design_academy?igsh=bmgycm5nMXR4MjU4" target="_blank" class="social-button instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@waltdot.designaca?_r=1&_d=eih0d6l1j9132b&sec_uid=MS4wLjABAAAAJDSwjZ6Vr8Ayncjm6oMtz56QM38v_6Uz4nmaTIlUkzdiOcxeNSEIlrvSjdrtUROM&share_author_id=7474882292659242000&sharer_language=en&source=h5_m&u_code=ej223im5fc7j8k&timestamp=1754387607&user_id=7474882292659242000&sec_user_id=MS4wLjABAAAAJDSwjZ6Vr8Ayncjm6oMtz56QM38v_6Uz4nmaTIlUkzdiOcxeNSEIlrvSjdrtUROM&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7526942053260068628&share_link_id=b18b6119-72f3-4fc8-bdc1-ce2f337399fe&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb7360&social_share_type=5&enable_checksum=1" target="_blank" class="social-button tiktok">
+            <i class="fab fa-tiktok"></i>
+        </a>
+        <a href="https://youtu.be/kRA02yYgm3o?si=Fm_g5sWKDMExgzYd" target="_blank" class="social-button youtube">
+            <i class="fab fa-youtube"></i>
+        </a>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // This function will be called when an element comes into view
+        const intersectionCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                // If the element is visible
+                if (entry.isIntersecting) {
+                    // Remove the initial state classes to trigger the animation
+                    entry.target.classList.remove('opacity-0', 'translate-y-5');
+                    // Stop observing the element so the animation only happens once
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        // Observer options: trigger when 15% of the element is visible
+        const observerOptions = {
+            root: null, // relative to the viewport
+            threshold: 0.15,
+        };
+
+        // Create the Intersection Observer
+        const observer = new IntersectionObserver(intersectionCallback, observerOptions);
+
+        // Find all elements with the 'scroll-animate' class
+        const elementsToAnimate = document.querySelectorAll('.scroll-animate');
+        
+        // Add initial animation classes and start observing each element
+        elementsToAnimate.forEach(element => {
+            element.classList.add('opacity-0', 'translate-y-5', 'transition-all', 'duration-700', 'ease-out');
+            observer.observe(element);
+        });
+    });
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Find the form using the ID we added
+        const contactForm = document.getElementById('contact-form');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(event) {
+                // Prevent the form from submitting the traditional way
+                event.preventDefault();
+
+                // --- Your WhatsApp number is now set here ---
+                const whatsappNumber = '94778629117'; // Updated Number
+
+                // Get the values from the form fields
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+
+                // --- Create the message ---
+                const whatsappMessage = `
+    Hello, I'm contacting you from the website.
+
+    *Name:* ${name}
+    *Email:* ${email}
+    *Subject:* ${subject}
+    *Message:*
+    ${message}
+                `.trim();
+
+                // Encode the message so it can be safely used in a URL
+                const encodedMessage = encodeURIComponent(whatsappMessage);
+
+                // Create the final WhatsApp URL
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+                // Open the URL in a new tab
+                window.open(whatsappURL, '_blank');
+            });
+        }
+    });
+    </script>
+    
+    <div id="welcome-popup" class="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-60 hidden p-4">
+        <div id="popup-content" class="bg-white rounded-lg shadow-2xl p-8 max-w-sm w-full text-center transform scale-95 opacity-0 transition-all duration-300 relative">
+            <button id="close-popup" class="absolute top-2 right-3 text-gray-400 hover:text-gray-800 text-3xl">&times;</button>
+            
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Welcome to Our Academy!</h2>
+            <p class="text-gray-600 mb-8 text-lg">Are you a student ready to improve your skills?</p>
+            <div class="flex justify-center gap-4">
+                <a href="https://otieu.com/4/9875707" target="_blank" class="w-full bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover:bg-green-600 transform hover:scale-105">
+                    YES
+                </a>
+                <a href="https://otieu.com/4/9941939" target="_blank" class="w-full bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition duration-300 hover:bg-red-600 transform hover:scale-105">
+                    NO
+                </a>
+            </div>
         </div>
     </div>
-</section>
-<div class="floating-social-buttons">
-    <a href="https://www.facebook.com/profile.php?id=61559460683243" target="_blank" class="social-button facebook">
-        <i class="fab fa-facebook-f"></i>
-    </a>
-    
-    <a href="https://www.instagram.com/waltdot_design_academy?igsh=bmgycm5nMXR4MjU4" target="_blank" class="social-button instagram">
-        <i class="fab fa-instagram"></i>
-    </a>
-    
-    <a href="https://www.tiktok.com/@waltdot.designaca?_r=1&_d=eih0d6l1j9132b&sec_uid=MS4wLjABAAAAJDSwjZ6Vr8Ayncjm6oMtz56QM38v_6Uz4nmaTIlUkzdiOcxeNSEIlrvSjdrtUROM&share_author_id=7474882292659242000&sharer_language=en&source=h5_m&u_code=ej223im5fc7j8k&timestamp=1754387607&user_id=7474882292659242000&sec_user_id=MS4wLjABAAAAJDSwjZ6Vr8Ayncjm6oMtz56QM38v_6Uz4nmaTIlUkzdiOcxeNSEIlrvSjdrtUROM&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7526942053260068628&share_link_id=b18b6119-72f3-4fc8-bdc1-ce2f337399fe&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb7360&social_share_type=5&enable_checksum=1" target="_blank" class="social-button tiktok">
-        <i class="fab fa-tiktok"></i>
-    </a>
+    <footer class="relative bg-black overflow-hidden text-gray-300">
+        <div class="absolute top-0 left-0 w-full h-1 bg-red-500"></div>
 
-    <a href="https://youtu.be/kRA02yYgm3o?si=Fm_g5sWKDMExgzYd" target="_blank" class="social-button youtube">
-        <i class="fab fa-youtube"></i>
-    </a>
-</div>
+        <div class="absolute top-10 right-10 w-32 h-32 bg-red-500/10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-10 left-10 w-24 h-24 bg-red-500/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
 
-<!-- SCRIPT FOR SCROLL-TRIGGERED ANIMATIONS -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // This function will be called when an element comes into view
-    const intersectionCallback = (entries, observer) => {
-        entries.forEach(entry => {
-            // If the element is visible
-            if (entry.isIntersecting) {
-                // Remove the initial state classes to trigger the animation
-                entry.target.classList.remove('opacity-0', 'translate-y-5');
-                // Stop observing the element so the animation only happens once
-                observer.unobserve(entry.target);
-            }
-        });
-    };
+        <div class="container mx-auto px-6 pt-20 pb-8 relative z-10">
+            <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 mb-16">
 
-    // Observer options: trigger when 15% of the element is visible
-    const observerOptions = {
-        root: null, // relative to the viewport
-        threshold: 0.15,
-    };
+                <div class="lg:col-span-2 xl:col-span-2 space-y-6 group">
+                    <div class="transform transition-all duration-500 group-hover:-translate-y-2">
+                        <h3 class="text-3xl font-bold mb-4 text-white">
+                            Wault Dot Design Academy
+                        </h3>
+                        <div class="w-16 h-1 bg-red-500 rounded-full mb-6 group-hover:w-24 transition-all duration-300"></div>
+                        <p class="text-gray-300 text-lg leading-relaxed mb-8">
+                            Empowering your learning journey with high-quality, flexible, and affordable online courses. Transform your future with expert-led education.
+                        </p>
+                    </div>
 
-    // Create the Intersection Observer
-    const observer = new IntersectionObserver(intersectionCallback, observerOptions);
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://www.instagram.com/waltdot_design_academy?igsh=bmgycm5nMXR4MjU4" 
+                            class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
 
-    // Find all elements with the 'scroll-animate' class
-    const elementsToAnimate = document.querySelectorAll('.scroll-animate');
-    
-    // Add initial animation classes and start observing each element
-    elementsToAnimate.forEach(element => {
-        element.classList.add('opacity-0', 'translate-y-5', 'transition-all', 'duration-700', 'ease-out');
-        observer.observe(element);
-    });
-});
-</script>
+                        <a href="https://www.tiktok.com/@waltdot.designaca?_r=1&_d=eih0d6l1j9132b&sec_uid=MS4wLjABAAAAJDSwjZ6Vr8Ayncjm6oMtz56QM38v_6Uz4nmaTIlUkzdiOcxeNSEIlrvSjdrtUROM&share_author_id=7474882292659242000&sharer_language=en&source=h5_m&u_code=ej223im5fc7j8k&timestamp=1754387607&user_id=7474882292659242000&sec_user_id=MS4wLjABAAAAJDSwjZ6Vr8Ayncjm6oMtz56QM38v_6Uz4nmaTIlUkzdiOcxeNSEIlrvSjdrtUROM&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7526942053260068628&share_link_id=b18b6119-72f3-4fc8-bdc1-ce2f337399fe&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb7360&social_share_type=5&enable_checksum=1" 
+                            class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
+                            <i class="fab fa-tiktok text-lg"></i> 
+                        </a>
 
-<script>
-   document.addEventListener('DOMContentLoaded', function() {
-    // Find the form using the ID we added
-    const contactForm = document.getElementById('contact-form');
+                        <a href="https://youtu.be/kRA02yYgm3o?si=Fm_g5sWKDMExgzYd"
+                            class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
+                            <i class="fab fa-youtube text-lg"></i> 
+                        </a>
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            // Prevent the form from submitting the traditional way
-            event.preventDefault();
-
-            // --- Your WhatsApp number is now set here ---
-            const whatsappNumber = '94778629117'; // Updated Number
-
-            // Get the values from the form fields
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-
-            // --- Create the message ---
-            const whatsappMessage = `
-Hello, I'm contacting you from the website.
-
-*Name:* ${name}
-*Email:* ${email}
-*Subject:* ${subject}
-*Message:*
-${message}
-            `.trim();
-
-            // Encode the message so it can be safely used in a URL
-            const encodedMessage = encodeURIComponent(whatsappMessage);
-
-            // Create the final WhatsApp URL
-            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-            // Open the URL in a new tab
-            window.open(whatsappURL, '_blank');
-        });
-    }
-});
-</script>
-
-<footer class="relative bg-black overflow-hidden text-gray-300">
-    <div class="absolute top-0 left-0 w-full h-1 bg-red-500"></div>
-
-    <div class="absolute top-10 right-10 w-32 h-32 bg-red-500/10 rounded-full blur-3xl animate-float"></div>
-    <div class="absolute bottom-10 left-10 w-24 h-24 bg-red-500/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
-
-    <div class="container mx-auto px-6 pt-20 pb-8 relative z-10">
-        <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 mb-16">
-
-            <div class="lg:col-span-2 xl:col-span-2 space-y-6 group">
-                <div class="transform transition-all duration-500 group-hover:-translate-y-2">
-                    <h3 class="text-3xl font-bold mb-4 text-white">
-                        Wault Dot Design Academy
-                    </h3>
-                    <div class="w-16 h-1 bg-red-500 rounded-full mb-6 group-hover:w-24 transition-all duration-300"></div>
-                    <p class="text-gray-300 text-lg leading-relaxed mb-8">
-                        Empowering your learning journey with high-quality, flexible, and affordable online courses. Transform your future with expert-led education.
-                    </p>
+                        <a href="https://www.facebook.com/profile.php?id=61559460683243"
+                            class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
+                            <i class="fab fa-facebook-f text-lg"></i> 
+                        </a>
+                    </div>
                 </div>
 
-                <div class="flex flex-wrap gap-4">
-                 
-                    
-                  <a href="https://www.instagram.com/waltdot_design_academy?igsh=bmgycm5nMXR4MjU4" 
-   class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
-    <i class="fab fa-instagram text-lg"></i>
-</a>
-
-<a href="https://www.tiktok.com/@waltdot.designaca?_r=1&_d=eih0d6l1j9132b&sec_uid=MS4wLjABAAAAJDSwjZ6Vr8Ayncjm6oMtz56QM38v_6Uz4nmaTIlUkzdiOcxeNSEIlrvSjdrtUROM&share_author_id=7474882292659242000&sharer_language=en&source=h5_m&u_code=ej223im5fc7j8k&timestamp=1754387607&user_id=7474882292659242000&sec_user_id=MS4wLjABAAAAJDSwjZ6Vr8Ayncjm6oMtz56QM38v_6Uz4nmaTIlUkzdiOcxeNSEIlrvSjdrtUROM&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7526942053260068628&share_link_id=b18b6119-72f3-4fc8-bdc1-ce2f337399fe&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb7360&social_share_type=5&enable_checksum=1" 
-   class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
-    <i class="fab fa-tiktok text-lg"></i> </a>
-
-<a href="https://youtu.be/kRA02yYgm3o?si=Fm_g5sWKDMExgzYd"
-   class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
-    <i class="fab fa-youtube text-lg"></i> </a>
-
-<a href="https://www.facebook.com/profile.php?id=61559460683243"
-   class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white transform transition-all duration-300 hover:-translate-y-2 hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
-    <i class="fab fa-facebook-f text-lg"></i> </a>
+                <div class="transform transition-all duration-500 hover:-translate-y-2">
+                    <h4 class="text-white font-semibold text-xl mb-6 relative pb-3">
+                        Quick Links
+                        <div class="absolute bottom-0 left-0 w-8 h-0.5 bg-red-500 rounded-full"></div>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>About Us</a></li>
+                        <li><a href="#products" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>Our Popular Courses</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>Our Student's Projects</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>Video Tutorials & Highlights</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>What Our Students Say</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>Get In Touch</a></li>
+                    </ul>
                 </div>
-            </div>
 
-            <div class="transform transition-all duration-500 hover:-translate-y-2">
-                <h4 class="text-white font-semibold text-xl mb-6 relative pb-3">
-                    Quick Links
-                    <div class="absolute bottom-0 left-0 w-8 h-0.5 bg-red-500 rounded-full"></div>
-                </h4>
-                <ul class="space-y-3">
-                    <li><a href="#about" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>About Us</a></li>
-                    <li><a href="#products" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>Our Popular Courses</a></li>
-                    <li><a href="#contact" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>Our Student's Projects</a></li>
-                    <li><a href="#contact" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>Video Tutorials & Highlights</a></li>
-                    <li><a href="#contact" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>What Our Students Say</a></li>
-
-                    <li><a href="#contact" class="text-gray-300 hover:text-red-500 transition-all duration-300 flex items-center group hover:translate-x-2"><i class="fas fa-chevron-right w-3 mr-3 text-red-500"></i>Get In Touch</a></li>
-                    
-                </ul>
-            </div>
-
-            <div class="transform transition-all duration-500 hover:-translate-y-2">
-                <h4 class="text-white font-semibold text-xl mb-6 relative pb-3">
-                    Categories
-                    <div class="absolute bottom-0 left-0 w-8 h-0.5 bg-red-500 rounded-full"></div>
-                </h4>
-                <ul class="space-y-3">
-                    <li><a href="#" class="text-gray-300 hover:text-red-500 transition-colors duration-300">Web Design Course</a></li>
-                    
-                    <li><a href="#" class="text-gray-300 hover:text-red-500 transition-colors duration-300">Graphic Design Course</a></li>
-
-                    <li><a href="#" class="text-gray-300 hover:text-red-500 transition-colors duration-300">Video Editing Course</a></li>
-                </ul>
-            </div>
-            
-            <div class="transform transition-all duration-500 hover:-translate-y-2">
-                <h4 class="text-white font-semibold text-xl mb-6 relative pb-3">
-                    Get in Touch
-                    <div class="absolute bottom-0 left-0 w-8 h-0.5 bg-red-500 rounded-full"></div>
-                </h4>
+                <div class="transform transition-all duration-500 hover:-translate-y-2">
+                    <h4 class="text-white font-semibold text-xl mb-6 relative pb-3">
+                        Categories
+                        <div class="absolute bottom-0 left-0 w-8 h-0.5 bg-red-500 rounded-full"></div>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-red-500 transition-colors duration-300">Web Design Course</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-red-500 transition-colors duration-300">Graphic Design Course</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-red-500 transition-colors duration-300">Video Editing Course</a></li>
+                    </ul>
+                </div>
                 
+                <div class="transform transition-all duration-500 hover:-translate-y-2">
+                    <h4 class="text-white font-semibold text-xl mb-6 relative pb-3">
+                        Get in Touch
+                        <div class="absolute bottom-0 left-0 w-8 h-0.5 bg-red-500 rounded-full"></div>
+                    </h4>
+                    
                     <div class="flex items-start">
                         <i class="fas fa-phone-alt text-red-500 w-5 mt-1 mr-4 flex-shrink-0"></i>
                         <a href="tel:+94779004063" class="text-gray-400 hover:text-red-500 transition-colors duration-300">+94 78 932 6760</a>
@@ -1131,7 +1103,6 @@ ${message}
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="border-t border-gray-700/50 pt-12 pb-8">
@@ -1177,9 +1148,9 @@ ${message}
             </div>
         </div>
     </div>
-</footer>
+    </footer>
 
-<script>
+    <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Newsletter form functionality
         const emailInput = document.getElementById('newsletter-email');
@@ -1235,9 +1206,56 @@ ${message}
             observer.observe(col);
         });
     });
-</script>
+    </script>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const popup = document.getElementById('welcome-popup');
+        const popupContent = document.getElementById('popup-content');
+        const closeBtn = document.getElementById('close-popup');
+        
+        // Function to show the popup
+        function showPopup() {
+            if (popup) {
+                popup.classList.remove('hidden');
+                // Use a short timeout to allow the display property to change before starting the transition
+                setTimeout(() => {
+                    popupContent.classList.remove('scale-95', 'opacity-0');
+                    popupContent.classList.add('scale-100', 'opacity-100');
+                }, 50); 
+            }
+        }
 
- 
+        // Function to hide the popup
+        function hidePopup() {
+            if (popup) {
+                popupContent.classList.add('scale-95', 'opacity-0');
+                // Wait for the transition to finish before hiding the element
+                setTimeout(() => {
+                    popup.classList.add('hidden');
+                }, 300); // Should match the transition duration (duration-300)
+            }
+        }
+        
+        // Show the popup after a 1.5-second delay
+        setTimeout(showPopup, 1500);
+
+        // Event listener for the close button
+        if (closeBtn) {
+            closeBtn.addEventListener('click', hidePopup);
+        }
+        
+        // Optional: Close the popup if the user clicks on the dark overlay
+        if (popup) {
+            popup.addEventListener('click', function(event) {
+                // Check if the click was on the overlay itself, not the content box
+                if (event.target === popup) {
+                    hidePopup();
+                }
+            });
+        }
+    });
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -1249,10 +1267,9 @@ ${message}
     <script src="navbar.js"></script>
     <script src="gallery.js" defer></script>
     <script src="reviews.js"></script>
-   <script src="load-videos.js"></script>
-   
-   
-<script>
+    <script src="load-videos.js"></script>
+    
+    <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js')
@@ -1265,5 +1282,5 @@ ${message}
             });
         }
     </script>
-
+</body>
 </html>
