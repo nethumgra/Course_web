@@ -1,34 +1,33 @@
-// --- FIREBASE IMPORTS ---
+// --- FIREBASE IMPORTS (Realtime Database Modular SDK) ---
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, query, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 // --- CONFIGURATION ---
 const firebaseConfig = {
-    apiKey: "AIzaSyAVu0_PvOOA_1D1Dk0La4Gy-X_dlrq5n4s",
-    authDomain: "mindinu-vege.firebaseapp.com",
-    projectId: "mindinu-vege",
-    storageBucket: "mindinu-vege.appspot.com",
-    messagingSenderId: "122155864706",
-    appId: "1:122155864706:web:42f6c6aff06b3aeb779a9b",
-    measurementId: "G-8X3DYYXF2K"
+    apiKey: "AIzaSyCV2IrYyrDuvwo0KrDkErYU5jQzF_Ay33A",
+    authDomain: "waultdot-design.firebaseapp.com",
+    projectId: "waultdot-design",
+    storageBucket: "waultdot-design.appspot.com",
+    databaseURL: "https://waultdot-design-default-rtdb.firebaseio.com" 
 };
-const imgbbApiKey = '65be3e7586c166102752452ff286571a';
-const whatsappNumber = '94779004063';
 
 // --- INITIALIZE FIREBASE ---
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const db = getDatabase(app);
+const productsRef = ref(db, 'products');
+
+// Config for Enrollment
+const imgbbApiKey = '65be3e7586c166102752452ff286571a';
+const whatsappNumber = '94778629117'; 
 
 // --- MAIN SCRIPT ---
 document.addEventListener('DOMContentLoaded', function() {
     
     // --- DOM ELEMENTS ---
     const productsGrid = document.getElementById('products-grid');
-    const productsContainer = document.getElementById('products');
-    
     const modal = document.getElementById('course-modal');
-    if (!modal) return; // Stop if modal is not on the page
     
+    // Modal Elements
     const modalTitle = document.getElementById('modal-title');
     const modalDescription = document.getElementById('modal-description');
     const closeModalBtn = document.getElementById('modal-close-btn');
@@ -38,32 +37,37 @@ document.addEventListener('DOMContentLoaded', function() {
     const slipPreview = document.getElementById('slip-preview');
     const enrollNowBtn = document.getElementById('enroll-now-btn');
     const enrollStatus = document.getElementById('enroll-status');
+    
     let currentCourseTitle = '';
 
-    // --- DATA FETCHING & RENDERING (FOR GRID LAYOUT) ---
+    // --- RENDERING FUNCTION (දත්ත පෙන්වන ආකාරය) ---
     function renderProducts(products) {
         if (!productsGrid) return;
         
-        let productsHTML = '';
         if (products.length === 0) {
-            productsGrid.innerHTML = '<p class="text-center text-gray-500 col-span-full">No courses available.</p>';
+            productsGrid.innerHTML = '<p class="text-center text-gray-500 col-span-full">No courses available at the moment.</p>';
             return;
         }
 
+        let productsHTML = '';
         products.forEach(product => {
-            const firstImageUrl = product.imageUrl?.split(',')[0].trim() || 'https://via.placeholder.com/1080x1080.png?text=No+Image';
+            const imageUrl = product.imageUrl || 'https://via.placeholder.com/400x400.png?text=No+Image';
+            
             productsHTML += `
-                <div class="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-100">
                     <div class="aspect-square w-full overflow-hidden">
-                        <img src="${firstImageUrl}" alt="${product.name}" class="w-full h-full object-cover">
+                        <img src="${imageUrl}" alt="${product.name}" class="w-full h-full object-cover">
                     </div>
-                    <div class="p-4 flex flex-col flex-grow">
-                        <h3 class="course-title text-lg font-bold text-gray-800 flex-grow">${product.name}</h3>
-                        <p class="course-price text-xl text-white font-semibold mt-2">${product.price}</p>
-                        <button class="open-modal-btn mt-4 w-full bg-black text-white font-bold py-2 px-4 rounded-lg transition duration-300 hover:bg-red-500"
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="course-title text-lg font-bold text-gray-800">${product.name}</h3>
+                        
+                        <p class="text-gray-600 text-sm mt-2 line-clamp-2 flex-grow">
+                            ${product.description || 'Join our expert-led course to master your skills.'}
+                        </p>
+
+                        <button class="open-modal-btn mt-4 w-full bg-black text-white font-bold py-3 px-4 rounded-lg transition duration-300 hover:bg-red-500"
                             data-title="${product.name}"
-                            data-price="${product.price}"
-                            data-description="${product.description || 'No description available.'}">
+                            data-description="${product.description || 'Master your skills with our expert-led course.'}">
                             Get This Course
                         </button>
                     </div>
@@ -72,21 +76,31 @@ document.addEventListener('DOMContentLoaded', function() {
         productsGrid.innerHTML = productsHTML;
     }
     
-    const productsQuery = query(collection(db, "products"));
-    onSnapshot(productsQuery, (snapshot) => {
-        const allProducts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        renderProducts(allProducts);
+    // --- REAL-TIME DATA FETCH (Database එකෙන් දත්ත ගැනීම) ---
+    onValue(productsRef, (snapshot) => {
+        const data = snapshot.val();
+        const productsList = [];
+        if (data) {
+            Object.keys(data).forEach(key => {
+                productsList.push({ id: key, ...data[key] });
+            });
+        }
+        // අලුත්ම Course එක මුලට එන විදිහට Reverse කර ඇත
+        renderProducts(productsList.reverse());
     });
 
-    // --- MODAL & FORM LOGIC ---
-    function openModal(title, description, price) {
+    // --- MODAL & ENROLLMENT LOGIC ---
+    function openModal(title, description) {
         currentCourseTitle = title;
-        modalTitle.textContent = title;
-        modalDescription.innerHTML = description.replace(/\\n/g, '<br>');
-        enrollForm.reset();
-        slipPreview.classList.add('hidden');
-        enrollNowBtn.disabled = true;
-        enrollStatus.textContent = '';
+        if(modalTitle) modalTitle.textContent = title;
+        if(modalDescription) modalDescription.innerHTML = description.replace(/\\n/g, '<br>');
+        
+        // Reset form and status
+        if(enrollForm) enrollForm.reset();
+        if(slipPreview) slipPreview.classList.add('hidden');
+        if(enrollNowBtn) enrollNowBtn.disabled = true;
+        if(enrollStatus) enrollStatus.textContent = '';
+        
         modal.classList.remove('hidden');
     }
 
@@ -94,65 +108,72 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.classList.add('hidden');
     }
 
+    // Form එකේ දත්ත තියෙනවාදැයි බැලීම (Validation)
     function validateForm() {
-        const nameFilled = enrollNameInput.value.trim() !== '';
-        const slipSelected = enrollSlipInput.files.length > 0;
-        enrollNowBtn.disabled = !(nameFilled && slipSelected);
+        const nameFilled = enrollNameInput && enrollNameInput.value.trim() !== '';
+        const slipSelected = enrollSlipInput && enrollSlipInput.files.length > 0;
+        if(enrollNowBtn) enrollNowBtn.disabled = !(nameFilled && slipSelected);
     }
     
-    enrollNameInput.addEventListener('input', validateForm);
-    enrollSlipInput.addEventListener('change', () => {
+    if(enrollNameInput) enrollNameInput.addEventListener('input', validateForm);
+    if(enrollSlipInput) enrollSlipInput.addEventListener('change', () => {
         const file = enrollSlipInput.files[0];
-        if (file) {
+        if (file && slipPreview) {
             slipPreview.src = URL.createObjectURL(file);
             slipPreview.classList.remove('hidden');
-        } else {
+        } else if(slipPreview) {
             slipPreview.classList.add('hidden');
         }
         validateForm();
     });
 
-    enrollForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        enrollNowBtn.disabled = true;
-        enrollStatus.textContent = 'Uploading payment slip...';
-        
-        const file = enrollSlipInput.files[0];
-        const formData = new FormData();
-        formData.append('image', file);
-        
-        fetch(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, { method: 'POST', body: formData })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                const slipUrl = data.data.url;
-                const studentName = enrollNameInput.value.trim();
-                const whatsappMessage = `New Course Enrollment!\n-------------------------------\nStudent Name: *${studentName}*\nCourse: *${currentCourseTitle}*\nPayment Slip: ${slipUrl}\n-------------------------------\nPlease verify and confirm.`;
-                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-                window.open(whatsappURL, '_blank');
-                enrollStatus.textContent = 'Redirecting to WhatsApp...';
-                setTimeout(closeModal, 2000);
-            } else {
-                throw new Error(data.error.message);
-            }
-        })
-        .catch(error => {
-            console.error('Upload Failed:', error);
-            enrollStatus.textContent = `Error: ${error.message}`;
-            enrollNowBtn.disabled = false;
+    // --- ENROLLMENT SUBMISSION (ImgBB + WhatsApp) ---
+    if(enrollForm) {
+        enrollForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            enrollNowBtn.disabled = true;
+            enrollStatus.textContent = 'Uploading payment slip...';
+            
+            const file = enrollSlipInput.files[0];
+            const formData = new FormData();
+            formData.append('image', file);
+            
+            fetch(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, { method: 'POST', body: formData })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const slipUrl = data.data.url;
+                    const studentName = enrollNameInput.value.trim();
+                    const whatsappMessage = `*New Course Enrollment!*\n\nStudent Name: ${studentName}\nCourse: ${currentCourseTitle}\nPayment Slip: ${slipUrl}\n\nPlease verify.`;
+                    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+                    
+                    window.open(whatsappURL, '_blank');
+                    enrollStatus.textContent = 'Redirecting to WhatsApp...';
+                    setTimeout(closeModal, 2000);
+                } else {
+                    throw new Error("Image upload failed");
+                }
+            })
+            .catch(error => {
+                enrollStatus.textContent = `Error: ${error.message}`;
+                enrollNowBtn.disabled = false;
+            });
         });
-    });
+    }
 
-    if (productsContainer) {
-        productsContainer.addEventListener('click', function(event) {
+    // Grid එකේ බටන් එක ක්ලික් කිරීම හඳුනාගැනීම
+    if (productsGrid) {
+        productsGrid.addEventListener('click', function(event) {
             const button = event.target.closest('.open-modal-btn');
             if (button) {
-                openModal(button.dataset.title, button.dataset.description, button.closest('.flex-col').querySelector('.course-price').textContent.trim());
+                openModal(button.dataset.title, button.dataset.description);
             }
         });
     }
 
-    closeModalBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => e.target === modal && closeModal());
-    document.addEventListener('keydown', (e) => e.key === "Escape" && !modal.classList.contains('hidden') && closeModal());
+    // Modal එක වැසීම
+    if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', (e) => {
+        if(e.target === modal) closeModal();
+    });
 });
