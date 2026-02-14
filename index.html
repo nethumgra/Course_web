@@ -468,48 +468,7 @@
         </div>
     </section>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const statsSection = document.getElementById('stats-counter');
-        const numbers = document.querySelectorAll('.stat-number');
-        let hasAnimated = false; // To make sure animation runs only once
-
-        const startCounter = (element) => {
-            const goal = parseInt(element.getAttribute('data-goal'));
-            let count = 0;
-            const duration = 2000; // Animation duration in milliseconds (2 seconds)
-            const increment = goal / (duration / 15); // Calculate step
-
-            const timer = setInterval(() => {
-                count += increment;
-                if (count >= goal) {
-                    clearInterval(timer);
-                    // Add a '+' for larger numbers and format with commas
-                    element.textContent = goal.toLocaleString() + (goal > 100 ? '+' : '');
-                } else {
-                    element.textContent = Math.ceil(count).toLocaleString();
-                }
-            }, 15); // Update every 15ms for smooth animation
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                // If the stats section is in view and hasn't animated yet
-                if (entry.isIntersecting && !hasAnimated) {
-                    hasAnimated = true; // Mark as animated
-                    numbers.forEach(number => startCounter(number));
-                    observer.unobserve(statsSection); // Stop observing after animation
-                }
-            });
-        }, {
-            threshold: 0.5 // Trigger when 50% of the section is visible
-        });
-
-        if (statsSection) {
-            observer.observe(statsSection);
-        }
-    });
-    </script>
+  
 
     <div id="order-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
         <div id="modal-overlay" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300"></div>
@@ -589,8 +548,8 @@
         </div>
     </section>
 
-    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-database-compat.js"></script>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="main.js" defer></script>
