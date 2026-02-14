@@ -118,4 +118,3 @@ document.addEventListener('DOMContentLoaded', function() {
 window.scrollToProducts = function() {
     document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
 }
-

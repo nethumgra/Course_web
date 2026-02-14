@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add & Manage Reviews (Firestore)</title>
+    <title>Add & Manage Reviews | Waultdotdesignacademy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -26,7 +26,7 @@
             <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
                 <div class="text-center mb-8">
                     <h1 class="text-4xl font-bold text-gray-800">Add a New Review</h1>
-                    <p class="text-gray-600 mt-2">Submit a new testimonial (Firestore Version).</p>
+                    <p class="text-gray-600 mt-2">Submit a new testimonial for the website.</p>
                 </div>
 
                 <form id="review-form">
@@ -57,7 +57,7 @@
                     <button type="submit" id="submit-btn" class="w-full bg-fresh-green text-white font-bold py-4 px-6 rounded-full transition duration-300 hover:bg-dark-green disabled:bg-gray-400 text-lg">
                         Submit Review
                     </button>
-                    <p id="submit-status" class="text-center text-sm mt-4 h-5"></p>
+                    <p id="submit-status" class="text-center text-sm mt-4 h-5 font-semibold"></p>
                     <a href="index.html" class="block text-center mt-4 text-sm text-gray-500 hover:text-fresh-green">← Back to Website</a>
                 </form>
             </div>
@@ -73,20 +73,22 @@
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-database-compat.js"></script>
 
     <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyCV2IrYyrDuvwo0KrDkErYU5jQzF_Ay33A",
-            authDomain: "web-course-ba01f.firebaseapp.com",
-            projectId: "web-course-ba01f",
-            storageBucket: "web-course-ba01f.appspot.com",
-        };
+      const firebaseConfig = {
+    apiKey: "AIzaSyCV2IrYyrDuvwo0KrDkErYU5jQzF_Ay33A", // මේක ඔයාගේ අලුත් Project එකේ එකද කියලා චෙක් කරන්න
+    authDomain: "waultdot-design.firebaseapp.com", // අලුත් project එකේ නම
+    databaseURL: "https://waultdot-design-default-rtdb.firebaseio.com", // මේක අනිවාර්යයෙන්ම මාරු කරන්න
+    projectId: "waultdot-design", // අලුත් project id එක
+};
 
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const reviewsCollection = db.collection('reviews');
+        const database = firebase.database();
+        const reviewsRef = database.ref('reviews');
 
+        // Form Elements
         const reviewForm = document.getElementById('review-form');
         const submitBtn = document.getElementById('submit-btn');
         const submitStatus = document.getElementById('submit-status');
@@ -98,12 +100,12 @@
         const imgbbApiKey = '65be3e7586c166102752452ff286571a';
         const reviewsManagementList = document.getElementById('reviews-management-list');
 
-        // Image Preview
+        // 1. Image Preview Logic
         imageInput.addEventListener('change', function() {
             const file = this.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = e => {
+                reader.onload = (e) => {
                     imagePreview.src = e.target.result;
                     imagePreview.classList.remove('hidden');
                 }
@@ -111,7 +113,7 @@
             }
         });
 
-        // Star Rating
+        // 2. Star Rating Logic
         starRatingContainer.addEventListener('click', e => {
             const rating = e.target.dataset.value;
             if (rating) {
@@ -123,7 +125,7 @@
             }
         });
 
-        // Submit Logic
+        // 3. Submit Review (With ImgBB and Firebase)
         reviewForm.addEventListener('submit', async function(event) {
             event.preventDefault();
             const name = document.getElementById('reviewer-name').value.trim();
@@ -132,35 +134,46 @@
             const imageFile = imageInput.files[0];
 
             if (rating === 0) {
-                submitStatus.textContent = "Please select a star rating.";
+                submitStatus.textContent = "❌ Please select a star rating.";
                 return;
             }
 
             submitBtn.disabled = true;
-            submitStatus.textContent = "Processing...";
-            let imageUrl = '';
+            submitStatus.textContent = "⏳ Submitting...";
+            let imageUrl = 'https://i.ibb.co/68XqnT3/default-avatar.png'; // Default avatar
 
             try {
                 if (imageFile) {
+                    submitStatus.textContent = "📸 Uploading image...";
                     const formData = new FormData();
                     formData.append('image', imageFile);
-                    const res = await fetch(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, { method: 'POST', body: formData });
-                    const resData = await res.json();
-                    if (resData.success) imageUrl = resData.data.url;
+
+                    const response = await fetch(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, {
+                        method: 'POST',
+                        body: formData,
+                    });
+                    const result = await response.json();
+
+                    if (result.success) {
+                        imageUrl = result.data.url;
+                    }
                 }
 
-                await reviewsCollection.add({
-                    name,
-                    rating,
-                    comment,
-                    imageUrl: imageUrl || 'https://i.ibb.co/68XqnT3/default-avatar.png',
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                // Push to Firebase Realtime Database
+                await reviewsRef.push({
+                    name: name,
+                    rating: rating,
+                    comment: comment,
+                    imageUrl: imageUrl,
+                    timestamp: Date.now()
                 });
 
                 submitStatus.textContent = "✅ Success! Review added.";
                 reviewForm.reset();
                 imagePreview.classList.add('hidden');
-                stars.forEach(s => s.classList.replace('text-yellow-400', 'text-gray-300'));
+                stars.forEach(star => star.classList.replace('text-yellow-400', 'text-gray-300'));
+                ratingValueInput.value = 0;
+
             } catch (error) {
                 submitStatus.textContent = `❌ Error: ${error.message}`;
             } finally {
@@ -168,42 +181,48 @@
             }
         });
 
-        // Real-time Listener to Display & Manage Reviews
-        reviewsCollection.orderBy('timestamp', 'desc').onSnapshot(snapshot => {
-            reviewsManagementList.innerHTML = ''; 
-            snapshot.forEach(doc => {
-                const data = doc.data();
-                const id = doc.id;
-                let starsHTML = '';
-                for (let i = 1; i <= 5; i++) {
-                    starsHTML += `<i class="fas fa-star ${i <= data.rating ? 'text-yellow-400' : 'text-gray-300'}"></i>`;
-                }
+        // 4. Load Reviews for Management Section
+        reviewsRef.orderByChild('timestamp').on('value', function(snapshot) {
+            reviewsManagementList.innerHTML = ''; // Clear current list
+            const data = snapshot.val();
+            
+            if (data) {
+                // Convert object to array and reverse to show newest first
+                const reviewsArray = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+                reviewsArray.reverse().forEach(review => {
+                    let starsHTML = '';
+                    for (let i = 1; i <= 5; i++) {
+                        starsHTML += `<i class="fas fa-star ${i <= review.rating ? 'text-yellow-400' : 'text-gray-300'}"></i>`;
+                    }
 
-                const card = document.createElement('div');
-                card.className = 'bg-white p-4 rounded-lg shadow-md flex items-center justify-between gap-4';
-                card.innerHTML = `
-                    <div class="flex items-center gap-4 flex-grow">
-                        <img src="${data.imageUrl}" class="w-16 h-16 rounded-full object-cover border-2 border-gray-200">
-                        <div class="flex-grow">
-                            <div class="flex flex-col sm:flex-row sm:items-center mb-1">
-                                <h4 class="font-bold text-gray-800 mr-4">${data.name}</h4>
-                                <div class="flex">${starsHTML}</div>
+                    const card = document.createElement('div');
+                    card.className = 'bg-white p-4 rounded-lg shadow-md flex items-center justify-between gap-4 border border-gray-100';
+                    card.innerHTML = `
+                        <div class="flex items-center gap-4 flex-grow">
+                            <img src="${review.imageUrl}" class="w-16 h-16 rounded-full object-cover border-2 border-gray-200">
+                            <div class="flex-grow">
+                                <div class="flex flex-col sm:flex-row sm:items-center mb-1">
+                                    <h4 class="font-bold text-gray-800 mr-4">${review.name}</h4>
+                                    <div class="flex">${starsHTML}</div>
+                                </div>
+                                <p class="text-gray-600 text-sm">"${review.comment}"</p>
                             </div>
-                            <p class="text-gray-600 text-sm">"${data.comment}"</p>
                         </div>
-                    </div>
-                    <button onclick="deleteReview('${id}')" class="bg-red-100 text-red-600 hover:bg-red-500 hover:text-white rounded-full w-10 h-10 flex items-center justify-center font-bold transition-colors text-xl">&times;</button>
-                `;
-                reviewsManagementList.appendChild(card);
-            });
+                        <button onclick="deleteReview('${review.id}')" class="bg-red-100 text-red-600 hover:bg-red-500 hover:text-white rounded-full w-10 h-10 flex items-center justify-center font-bold transition-colors text-xl">&times;</button>
+                    `;
+                    reviewsManagementList.appendChild(card);
+                });
+            }
         });
 
-        // Delete Logic
-        window.deleteReview = (id) => {
-            if (confirm('Delete this review?')) {
-                reviewsCollection.doc(id).delete();
+        // 5. Delete Logic
+        window.deleteReview = function(key) {
+            if (confirm('Are you sure you want to delete this review?')) {
+                database.ref('reviews/' + key).remove()
+                    .then(() => alert('Review deleted.'))
+                    .catch(err => alert('Error: ' + err.message));
             }
-        };
+        }
     </script>
 </body>
 </html>
