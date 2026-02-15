@@ -37,6 +37,26 @@
         }
     </script>
 
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-database-compat.js"></script>
+
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyCV2IrYyrDuvwo0KrDkErYU5jQzF_Ay33A",
+        authDomain: "waultdot-design.firebaseapp.com",
+        databaseURL: "https://waultdot-design-default-rtdb.firebaseio.com",
+        projectId: "waultdot-design",
+    };
+
+    // Firebase එක දැනටමත් initialize වෙලා නැත්නම් විතරක් කරන්න
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    
+    // මේක හරහා 'database' කියන එක මුළු page එකටම පොදු වෙනවා
+    window.database = firebase.database(); 
+</script>
+
     <style>
         /* Custom styles for Swiper pagination dots */
         .products-swiper .swiper-pagination-bullet-active {
@@ -552,7 +572,7 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-database-compat.js"></script>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="main.js" defer></script>
+    <script type="module" src="main.js"></script>
     <script src="gallery.js" defer></script>
 
     <script>

@@ -1,28 +1,14 @@
-// --- FIREBASE IMPORTS (Realtime Database Modular SDK) ---
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
 // --- CONFIGURATION ---
-const firebaseConfig = {
-    apiKey: "AIzaSyCV2IrYyrDuvwo0KrDkErYU5jQzF_Ay33A",
-    authDomain: "waultdot-design.firebaseapp.com",
-    projectId: "waultdot-design",
-    storageBucket: "waultdot-design.appspot.com",
-    databaseURL: "https://waultdot-design-default-rtdb.firebaseio.com" 
-};
-
-// --- INITIALIZE FIREBASE ---
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-const productsRef = ref(db, 'products');
-
-// Config for Enrollment
 const imgbbApiKey = '65be3e7586c166102752452ff286571a';
 const whatsappNumber = '94778629117'; 
 
-// --- MAIN SCRIPT ---
 document.addEventListener('DOMContentLoaded', function() {
     
+    // --- FIREBASE DATABASE REFERENCE ---
+    // index.html හි Firebase initialize කර ඇති නිසා කෙලින්ම database එක ලබා ගනී.
+    const database = firebase.database();
+    const productsRef = database.ref('products');
+
     // --- DOM ELEMENTS ---
     const productsGrid = document.getElementById('products-grid');
     const modal = document.getElementById('course-modal');
@@ -40,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let currentCourseTitle = '';
 
-    // --- RENDERING FUNCTION (දත්ත පෙන්වන ආකාරය) ---
+    // --- RENDERING FUNCTION ---
     function renderProducts(products) {
         if (!productsGrid) return;
         
@@ -76,8 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
         productsGrid.innerHTML = productsHTML;
     }
     
-    // --- REAL-TIME DATA FETCH (Database එකෙන් දත්ත ගැනීම) ---
-    onValue(productsRef, (snapshot) => {
+    // --- REAL-TIME DATA FETCH ---
+    productsRef.on('value', (snapshot) => {
         const data = snapshot.val();
         const productsList = [];
         if (data) {
@@ -85,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 productsList.push({ id: key, ...data[key] });
             });
         }
-        // අලුත්ම Course එක මුලට එන විදිහට Reverse කර ඇත
+        // අලුත්ම Course එක මුලට එන විදිහට පෙන්වයි
         renderProducts(productsList.reverse());
     });
 
@@ -93,9 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function openModal(title, description) {
         currentCourseTitle = title;
         if(modalTitle) modalTitle.textContent = title;
+        // New lines සඳහා <br> පාවිච්චි කරයි
         if(modalDescription) modalDescription.innerHTML = description.replace(/\\n/g, '<br>');
         
-        // Reset form and status
         if(enrollForm) enrollForm.reset();
         if(slipPreview) slipPreview.classList.add('hidden');
         if(enrollNowBtn) enrollNowBtn.disabled = true;
@@ -108,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.classList.add('hidden');
     }
 
-    // Form එකේ දත්ත තියෙනවාදැයි බැලීම (Validation)
     function validateForm() {
         const nameFilled = enrollNameInput && enrollNameInput.value.trim() !== '';
         const slipSelected = enrollSlipInput && enrollSlipInput.files.length > 0;
@@ -127,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
         validateForm();
     });
 
-    // --- ENROLLMENT SUBMISSION (ImgBB + WhatsApp) ---
+    // --- ENROLLMENT SUBMISSION ---
     if(enrollForm) {
         enrollForm.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -161,7 +146,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Grid එකේ බටන් එක ක්ලික් කිරීම හඳුනාගැනීම
     if (productsGrid) {
         productsGrid.addEventListener('click', function(event) {
             const button = event.target.closest('.open-modal-btn');
@@ -171,7 +155,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Modal එක වැසීම
     if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
     window.addEventListener('click', (e) => {
         if(e.target === modal) closeModal();
