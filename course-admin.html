@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Admin | Realtime DB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <div class="container mx-auto px-4 py-12">
+        <div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-lg border">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Add New Course</h1>
+            
+            <form id="course-form" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">Course Name</label>
+                    <input type="text" id="course-name" required class="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">Price (e.g. Rs. 5,000)</label>
+                    <input type="text" id="course-price" required class="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">Description</label>
+                    <textarea id="course-desc" rows="4" required class="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-green-500"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">Course Image</label>
+                    <input type="file" id="course-image" accept="image/*" required class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
+                    <img id="preview" class="hidden mt-4 h-40 w-full object-cover rounded-lg border">
+                </div>
+
+                <button type="submit" id="submit-btn" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition shadow-lg">
+                    Add Course to Website
+                </button>
+                <p id="status-msg" class="text-center text-sm mt-4 font-semibold"></p>
+            </form>
+        </div>
+
+        <div class="max-w-4xl mx-auto mt-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Manage Courses</h2>
+            <div id="admin-product-grid" class="grid gap-6"></div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-database-compat.js"></script>
+
+    <script>
+        // 1. අලුත්ම Firebase Configuration එක
+        const firebaseConfig = {
+            apiKey: "AIzaSyCV2IrYyrDuvwo0KrDkErYU5jQzF_Ay33A",
+            authDomain: "waultdot-design.firebaseapp.com",
+            databaseURL: "https://waultdot-design-default-rtdb.firebaseio.com", // මෙතන URL එක චෙක් කරන්න
+            projectId: "waultdot-design",
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const productsRef = database.ref('products'); // Realtime DB වල node එක
+        const imgbbApiKey = '65be3e7586c166102752452ff286571a';
+
+        const form = document.getElementById('course-form');
+        const status = document.getElementById('status-msg');
+        const imgInput = document.getElementById('course-image');
+        const preview = document.getElementById('preview');
+
+        imgInput.onchange = () => {
+            const file = imgInput.files[0];
+            if (file) { preview.src = URL.createObjectURL(file); preview.classList.remove('hidden'); }
+        };
+
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            status.textContent = "⏳ Processing... Please wait.";
+
+            try {
+                // 1. Upload to ImgBB
+                const formData = new FormData();
+                formData.append('image', imgInput.files[0]);
+                const imgRes = await fetch(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, { method: 'POST', body: formData });
+                const imgData = await imgRes.json();
+
+                if (!imgData.success) throw new Error("Image upload failed");
+
+                // 2. Save to Realtime Database
+                await productsRef.push({
+                    name: document.getElementById('course-name').value,
+                    price: document.getElementById('course-price').value,
+                    description: document.getElementById('course-desc').value,
+                    imageUrl: imgData.data.url,
+                    timestamp: Date.now()
+                });
+
+                status.className = "text-center text-sm mt-4 font-semibold text-green-600";
+                status.textContent = "✅ Success! Course Added.";
+                form.reset();
+                preview.classList.add('hidden');
+            } catch (err) {
+                status.className = "text-center text-sm mt-4 font-semibold text-red-600";
+                status.textContent = "❌ Error: " + err.message;
+            } finally {
+                btn.disabled = false;
+            }
+        };
+
+        // පවතින කෝස් පෙන්වන්න
+        productsRef.on('value', (snap) => {
+            const list = document.getElementById('admin-product-grid');
+            list.innerHTML = '';
+            const data = snap.val();
+            if (data) {
+                Object.keys(data).forEach(key => {
+                    const item = data[key];
+                    list.innerHTML += `
+                        <div class="bg-white p-4 rounded-xl shadow flex items-center gap-6 border">
+                            <img src="${item.imageUrl}" class="w-20 h-20 object-cover rounded-lg">
+                            <div class="flex-grow">
+                                <h3 class="font-bold">${item.name}</h3>
+                                <p class="text-green-600 font-bold">${item.price}</p>
+                            </div>
+                            <button onclick="deleteItem('${key}')" class="text-red-500 text-xl"><i class="fas fa-trash"></i></button>
+                        </div>`;
+                });
+            }
+        });
+
+        window.deleteItem = (key) => {
+            if (confirm("Are you sure?")) database.ref('products/' + key).remove();
+        };
+    </script>
+</body>
+</html>
